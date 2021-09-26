@@ -2,21 +2,32 @@
   "name": "shop-extension",
   "version": "0.1.0",
   "private": true,
+  "build": {
+    "productName": "Material-UI App Boilerplate"
+  },
   "dependencies": {
+    "@apollo/client": "^3.4.13",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@mui/material": "^5.0.0-rc.0",
+    "@mui/styles": "^5.0.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "apollo-upload-client": "^16.0.0",
+    "graphql": "^15.6.0",
+    "graphql-anywhere": "^4.2.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "file:/opt/usersLocalData/marco/src/foreign/create-react-app/packages/react-scripts/react-scripts-v4.0.3.tgz",
-    "web-vitals": "^1.0.1"
+    "subscriptions-transport-ws": "^0.9.19",
+    "uuid": "^8.3.2",
+    "web-vitals": "^1.0.1",
+    "webpack": "^5.54.0"
   },
   "resolutions": {
     "react-dev-utils": "/opt/usersLocalData/marco/src/foreign/create-react-app/packages/react-dev-utils/react-dev-utils-v11.0.4.tgz",
-    "webpack": "^5.41.1"
+    "webpack": "^5.54.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -44,11 +55,19 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-config-standard-jsx": "^10.0.0",
     "eslint-plugin-flowtype": "^6.1.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.26.0",
+    "eslint-plugin-react-app": "^6.2.2",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-standard": "^5.0.0",
     "react-app-rewired": "^2.1.8"
   }
 }
