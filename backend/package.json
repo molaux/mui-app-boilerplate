@@ -1,0 +1,69 @@
+{
+  "author": "Marc-Olivier Laux <marc-olivier@matlaux.net> (https://github.com/molaux)",
+  "license": "MIT",
+  "description": "MUI App boilerplate",
+  "keywords": [],
+  "type": "module",
+  "name": "mui-app-boilerplate-api-server",
+  "version": "1.0.0-alpha.0",
+  "main": "src/server.js",
+  "dependencies": {
+    "@molaux/sequelize-graphql-schema-builder": "^2.1.2",
+    "apollo-client": "^2.6.10",
+    "apollo-link-ws": "^1.0.20",
+    "apollo-server-express": "^3.1.2",
+    "async-mutex": "^0.3.1",
+    "bcrypt": "^5.0.0",
+    "colors": "^1.4.0",
+    "dotenv-flow": "^3.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.1.0",
+    "fast-deep-equal": "^3.1.3",
+    "graphql": "^15.5.1",
+    "graphql-relay": "^0.8.0",
+    "graphql-request": "^3.5.0",
+    "graphql-sequelize": "^9.4.2",
+    "graphql-subscriptions": "^1.1.0",
+    "graphql-tools": "^8.1.0",
+    "graphql-type-json": "^0.3.2",
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.1",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.6.5",
+    "sqlite3": "^5.0.1",
+    "subscriptions-transport-ws": "^0.9.19",
+    "umzug": "^3.0.0-beta-cli.17"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "sequelize-lazy-migrations": "^1.0.4",
+    "supertest": "^6.1.6"
+  },
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "start:prod": "NODE_ENV=production node --experimental-specifier-resolution=node --max-old-space-size=8192 --preserve-symlinks --no-warnings src/server.js",
+    "start:dev": "NODE_ENV=development nodemon --experimental-specifier-resolution=node --max-old-space-size=8192 --preserve-symlinks --trace-warnings src/server.js",
+    "start:test": "NODE_ENV=test node --experimental-specifier-resolution=node --max-old-space-size=8192 --preserve-symlinks --no-warnings src/server.js",
+    "generate:migration": "NODE_ENV=development node --experimental-specifier-resolution=node --preserve-symlinks --no-warnings bin/makemigration.js",
+    "generate:models": "bin/mysql-workbench-schema-export --config=config/mysql-worbench-exporter.json docs/Model.mwb",
+    "preci": "rm -fr node_modules",
+    "ci": "yarn install --frozen-lockfile",
+    "postci": "composer install"
+  },
+  "nodemonConfig": {
+    "ext": "js,cjs,mjs,coffee,litcoffee,json,json5",
+    "watch": [
+      "src",
+      "config",
+      "package.json"
+    ]
+  }
+}

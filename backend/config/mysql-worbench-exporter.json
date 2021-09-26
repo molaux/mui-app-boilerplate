@@ -1,0 +1,31 @@
+{
+    "export": "node-Sequelize6",
+    "zip": false,
+    "dir": "src\/models\/own",
+    "params": {
+        "language": "english",
+        "logToConsole": true,
+        "namingStrategy": "camel-case",
+        "logFile": "",
+        "backupExistingFile": false,
+        "useTabs": false,
+        "indentation": 2,
+        "eolDelimeter": "unix",
+        "addGeneratorInfoAsComment": true,
+        "filename": "%entity%.cjs",
+        "skipPluralNameChecking": false,
+        "useLoggedStorage": false,
+        "sortTablesAndViews": true,
+        "exportOnlyTableCategorized": "",
+        "enhanceManyToManyDetection": true,
+        "skipManyToManyTables": true,
+        "stripMultipleUnderscores": false,
+        "useSemicolons": false,
+        "generateAssociationMethod": true,
+        "generateForeignKeysFields": false,
+        "relatedVarNameFormat": "%name%%related%",
+        "asIsUserDatatypePrefix": "_",
+        "useTimestamps": true,
+        "injectExtendFunction": true
+    }
+}

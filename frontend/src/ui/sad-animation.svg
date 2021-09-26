@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg3108"
+   version="1.1"
+   viewBox="20 -40 280 170"
+   >
+  <defs
+     id="defs3102" >
+
+    
+  </defs>
+  
+  <g
+     id="layer1"
+     >
+     <circle
+       r="0"
+       cy="-7.915764"
+       cx="189.58736"
+       id="path2153"
+       style="fill:#000000;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none" >
+       <animate id="a3" begin="a1.begin+800ms" attributeName="r" fill="freeze"  dur="1000ms" to="24.225235"/>
+    </circle>
+    <circle
+       r="0"
+       cy="5.301888"
+       cx="100.86331"
+       id="path2155"
+       style="fill:#000000;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none" >
+       <animate id="a4" begin="a1.begin+500ms" attributeName="r" fill="freeze"  dur="1500ms" to="10.880033"/>
+    </circle>
+    <path
+       
+       id="path3110"
+       stroke-dasharray="300"
+       stroke-dashoffset="300"
+       d="m 50.744524,87.696954 c 23.916024,-6.039257 18.591208,25.716716 41.055681,23.673736 22.464465,-2.04297 12.471965,-21.720279 32.718695,-21.648784 18.8655,0.06662 17.14525,20.736984 34.5054,20.673044 18.70813,-0.0689 15.24745,-26.554952 37.09301,-26.227311 19.03938,0.285554 17.42934,31.301121 36.04667,28.941321 18.61733,-2.3598 14.52896,-25.755346 27.6936,-25.639203"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:7;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;">
+       <animate id="a1" begin="0s" attributeName="stroke-dashoffset" fill="freeze"  dur="1500ms" to="0"/>
+       <animate id="a2" attributeName="d" begin="a1.end-300ms" dur="1500ms" fill="freeze" values="m 50.744524,87.696954 c 23.916024,-6.039257 18.591208,25.716716 41.055681,23.673736 22.464465,-2.04297 12.471965,-21.720279 32.718695,-21.648784 18.8655,0.06662 17.14525,20.736984 34.5054,20.673044 18.70813,-0.0689 15.24745,-26.554952 37.09301,-26.227311 19.03938,0.285554 17.42934,31.301121 36.04667,28.941321 18.61733,-2.3598 14.52896,-25.755346 27.6936,-25.639203;m 46.746155,50.793648 c 6.653241,18.893734 19.133943,35.437791 29.479001,43.881791 12.477174,10.184311 30.601904,20.149911 47.788844,24.371451 17.64024,4.33289 36.85484,4.26306 53.60889,2.20665 12.9202,-1.58584 25.2117,-6.56138 34.57944,-11.01134 15.4437,-7.33621 26.44217,-17.760867 32.56103,-23.963386 16.66514,-16.892986 22.65917,-31.099706 28.98602,-46.287959"/>
+       
+    </path>
+  </g>
+</svg>

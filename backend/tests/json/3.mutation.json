@@ -1,0 +1,26 @@
+{
+  "response": {
+    "data": {
+      "updateUser": [
+        {
+          "firstName": "Marco",
+          "id": "1",
+          "lastName": "ISTRATOR"
+        }
+      ]
+    }
+  },
+  "publications": {
+    "updatedUser": {
+      "data": {
+        "updatedUser": [
+          {
+            "firstName": "Marco",
+            "id": "1",
+            "lastName": "ISTRATOR"
+          }
+        ]
+      }    
+    }
+  }
+}

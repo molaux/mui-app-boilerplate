@@ -1,0 +1,3 @@
+mutation {
+  login(login: "admin", password: "admin")
+}

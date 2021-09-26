@@ -1,0 +1,32 @@
+{
+  "own": {
+    "test": {
+      "username": null,
+      "password": null,
+      "database": null,
+      "dialect": "sqlite",
+      "storage": ":memory:",
+      "logging": false,
+      "dialectOptions": {
+      }
+    },
+    "development": {
+      "username": null,
+      "password": null,
+      "database": null,
+      "logging": false,
+      "dialect": "sqlite",
+      "storage": ":memory:",
+      "dialectOptions": {
+      }
+    },
+    "production": {
+      "username": "user",
+      "password": "*********************",
+      "database": "own",
+      "host": "unknown",
+      "dialect": "postgres",
+      "logging": false
+    }
+  }
+}

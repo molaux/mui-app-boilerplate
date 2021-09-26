@@ -1,0 +1,13 @@
+{
+  "response": {
+    "data": {
+      "Users": [
+        {
+          "name": "Admin ISTRATOR"
+        }
+      ]
+    }
+  },
+  "publications": {
+  }
+}

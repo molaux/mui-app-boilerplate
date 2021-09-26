@@ -1,0 +1,11 @@
+{
+  "collectCoverage": true,
+  "moduleFileExtensions": [
+    "js",
+    "mjs"
+  ],
+  "setupFiles": [
+    "dotenv/config"
+  ],
+  "transform": {}
+}

@@ -1,0 +1,465 @@
+{
+    "tables": {
+        "address": {
+            "tableName": "address",
+            "schema": {
+                "id": {
+                    "field": "id",
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "field": "created_at",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Fn"
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "field": "updated_at",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Fn"
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "comment": {
+                    "field": "comment",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": ""
+                    },
+                    "seqType": "Sequelize.TEXT"
+                },
+                "label": {
+                    "field": "label",
+                    "seqType": "Sequelize.STRING(200)"
+                },
+                "street": {
+                    "field": "street",
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(45)"
+                },
+                "zipCode": {
+                    "field": "zip_code",
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(45)"
+                },
+                "city": {
+                    "field": "city",
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(45)"
+                },
+                "country": {
+                    "field": "country",
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(45)"
+                }
+            },
+            "indexes": []
+        },
+        "group": {
+            "tableName": "group",
+            "schema": {
+                "id": {
+                    "field": "id",
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "field": "created_at",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Fn"
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "field": "updated_at",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Fn"
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "name": {
+                    "field": "name",
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(200)"
+                },
+                "comment": {
+                    "field": "comment",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": ""
+                    },
+                    "seqType": "Sequelize.TEXT"
+                }
+            },
+            "indexes": []
+        },
+        "log": {
+            "tableName": "log",
+            "schema": {
+                "id": {
+                    "field": "id",
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "field": "created_at",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Fn"
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "field": "updated_at",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Fn"
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "name": {
+                    "field": "name",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": ""
+                    },
+                    "seqType": "Sequelize.STRING(200)"
+                },
+                "comment": {
+                    "field": "comment",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": ""
+                    },
+                    "seqType": "Sequelize.TEXT"
+                },
+                "userId": {
+                    "allowNull": true,
+                    "name": "userId",
+                    "references": {
+                        "model": "user",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "SET NULL",
+                    "field": "user_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": {
+                "7ecbab6c7484d25bca4ecd155740da14900aa93b": {
+                    "name": "log_user_fk1_idx",
+                    "fields": [
+                        "user_id"
+                    ],
+                    "options": {
+                        "indexName": "log_user_fk1_idx",
+                        "name": "log_user_fk1_idx"
+                    }
+                }
+            }
+        },
+        "permission": {
+            "tableName": "permission",
+            "schema": {
+                "id": {
+                    "field": "id",
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "field": "created_at",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Fn"
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "field": "updated_at",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Fn"
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "name": {
+                    "field": "name",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": ""
+                    },
+                    "seqType": "Sequelize.STRING(200)"
+                },
+                "comment": {
+                    "field": "comment",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": ""
+                    },
+                    "seqType": "Sequelize.TEXT"
+                }
+            },
+            "indexes": []
+        },
+        "user": {
+            "tableName": "user",
+            "schema": {
+                "id": {
+                    "field": "id",
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "field": "created_at",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Fn"
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "firstName": {
+                    "field": "first_name",
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(200)"
+                },
+                "lastName": {
+                    "field": "last_name",
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(200)"
+                },
+                "updatedAt": {
+                    "field": "updated_at",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "internal": true,
+                        "value": "Sequelize.Fn"
+                    },
+                    "seqType": "Sequelize.DATE"
+                },
+                "comment": {
+                    "field": "comment",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": ""
+                    },
+                    "seqType": "Sequelize.TEXT"
+                },
+                "enabled": {
+                    "field": "enabled",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": true
+                    },
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "password": {
+                    "field": "password",
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "authenticationType": {
+                    "field": "authentication_type",
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": "intern"
+                    },
+                    "seqType": "Sequelize.STRING(45)"
+                },
+                "login": {
+                    "field": "login",
+                    "unique": true,
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(45)"
+                },
+                "phone": {
+                    "field": "phone",
+                    "seqType": "Sequelize.STRING(45)"
+                },
+                "email": {
+                    "field": "email",
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "addressId": {
+                    "allowNull": false,
+                    "name": "addressId",
+                    "references": {
+                        "model": "address",
+                        "key": "id"
+                    },
+                    "onDelete": "RESTRICT",
+                    "onUpdate": "CASCADE",
+                    "field": "address_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": {
+                "c15991f40625ac0292db121c07c864df515b6656": {
+                    "name": "user_address_fk1_idx",
+                    "fields": [
+                        "address_id"
+                    ],
+                    "options": {
+                        "indexName": "user_address_fk1_idx",
+                        "name": "user_address_fk1_idx"
+                    }
+                },
+                "5e56478bc67fa0ef78c250e3c2534b10e1409a0b": {
+                    "name": "login_UNIQUE",
+                    "fields": [
+                        "login"
+                    ],
+                    "unique": true,
+                    "options": {
+                        "indexName": "login_UNIQUE",
+                        "name": "login_UNIQUE",
+                        "indicesType": "UNIQUE",
+                        "type": "UNIQUE"
+                    }
+                }
+            }
+        },
+        "group_has_permissions": {
+            "tableName": "group_has_permissions",
+            "schema": {
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "group_id": {
+                    "name": "group_id",
+                    "primaryKey": true,
+                    "references": {
+                        "model": "group",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "group_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "permission_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "permission",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "permission_id",
+                    "name": "permission_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "group_has_user": {
+            "tableName": "group_has_user",
+            "schema": {
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "group_id": {
+                    "name": "group_id",
+                    "primaryKey": true,
+                    "references": {
+                        "model": "group",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "group_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "user_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "user",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "user_id",
+                    "name": "user_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "user_has_permissions": {
+            "tableName": "user_has_permissions",
+            "schema": {
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "created_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updated_at",
+                    "seqType": "Sequelize.DATE"
+                },
+                "permission_id": {
+                    "name": "permission_id",
+                    "primaryKey": true,
+                    "references": {
+                        "model": "permission",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "permission_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "user_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "user",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "user_id",
+                    "name": "user_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        }
+    },
+    "revision": 1
+}

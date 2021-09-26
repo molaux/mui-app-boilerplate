@@ -1,0 +1,19 @@
+{
+  "response": {
+    "data": {
+      "login": "__store:authorization__"
+    }
+  },
+  "publications": {
+    "createdUser": {
+      "Error": {
+        "message": "Missing auth token!"
+      }
+    },
+    "updatedUser": {
+      "Error": {
+        "message": "Missing auth token!"
+      }
+    }
+  }
+}

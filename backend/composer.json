@@ -1,0 +1,25 @@
+{
+  "license": "ISC",
+  "type": "project",
+  "description": "GraphQL Sequelize R example",
+
+  "config": {
+      "bin-dir": "bin"
+  },
+
+  "repositories":[
+    {
+        "type": "git",
+        "url": "https://github.com/mysql-workbench-schema-exporter/mysql-workbench-schema-exporter.git"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/molaux/node-exporter.git"
+    }
+  ],
+
+  "require-dev": {
+      "mysql-workbench-schema-exporter/mysql-workbench-schema-exporter": "dev-master",
+      "mysql-workbench-schema-exporter/node-exporter": "dev-master"
+  }
+}

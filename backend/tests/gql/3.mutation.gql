@@ -1,0 +1,9 @@
+mutation {
+  updateUser(query: { where: { id: 1 } }, input: {
+    firstName: "Marco"
+  }) {
+    id
+    firstName
+    lastName
+  }
+}
