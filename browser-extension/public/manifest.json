@@ -1,0 +1,31 @@
+{
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "manifest_version": 2,
+  "version": "0.0.1",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Shop extension",
+    "default_icon": {
+      "48": "assets/favicon-48x48.png",
+      "96": "assets/favicon-96x96.png"
+    }
+  },
+  "icons": {
+    "48": "assets/favicon-48x48.png",
+    "96": "assets/favicon-96x96.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://btobio.biocoop.fr/#/be-to-bio/suiviCommandes/*",
+        "https://www.google.com/search*"
+      ],
+      "js": ["static/js/content.js"]
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
