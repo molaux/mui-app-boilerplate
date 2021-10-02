@@ -13,7 +13,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import CircularProgress from '@mui/material/CircularProgress'
 
-import { CRUDFContext } from '@molaux/mui-crudf'
+// import { CRUDFContext } from '@molaux/mui-crudf'
 import { Center } from '@molaux/mui-utils'
 
 import AppLoadingAnimation from './ui/AppLoadingAnimation'
@@ -33,7 +33,7 @@ import './App.css'
 
 // const Configuration = lazy(() => import('./components/configuration/Configuration'))
 
-const AppContent = ({ searchContext, classes, match, module, onLoaded }) => (module === 'something' || match.params.module === 'something'
+const AppContent = ({ classes, match, module, onLoaded }) => (module === 'something' || match.params.module === 'something'
   ? null
   : (
     <Greetings
@@ -62,7 +62,7 @@ const App = ({ classes, module, onDisconnect, match }) => {
     [module, match.params.module, setInitialLoad]
   )
 
-  const { registerIntrospection } = useContext(CRUDFContext)
+  // const { registerIntrospection } = useContext(CRUDFContext)
 
   useEffect(() => {
     // registerIntrospection(UserIntrospection)
