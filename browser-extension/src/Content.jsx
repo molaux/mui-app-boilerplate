@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@mui/material/styles'
 // import useMediaQuery from '@mui/material/useMediaQuery'
@@ -8,17 +8,15 @@ import { ThemeProvider } from '@mui/material/styles'
 import StyledEngineProvider from '@mui/material/StyledEngineProvider'
 
 import { v4 as generateUUID } from 'uuid'
-import { Button } from '@mui/material'
 // import pkg from '../package.json'
 import { ReactComponent as Logo } from './ui/logo.svg'
 import buildApolloClient from './apollo'
-import { Login } from './components/login/Login'
 import { lightThemeDense as denseTheme } from './ui/theme'
 import ErrorHandler from './ui/ErrorHandler'
 
 const uuid = generateUUID()
 
-function App () {
+function Content () {
   const [error, setError] = useState(null)
   const [token, setToken] = useState(window.localStorage.getItem('auth-token'))
 
@@ -26,17 +24,6 @@ function App () {
     window.localStorage.removeItem('auth-token')
     setToken(null)
     setApolloClient(buildApolloClient(null, uuid, onError))
-    // eslint-disable-next-line no-undef
-    browser.tabs.query({
-      currentWindow: true,
-      active: true
-    }).then((tabs) => tabs.map(({ id }) => {
-      console.log('Sending disconnect to ', id)
-      // eslint-disable-next-line no-undef
-      return browser.tabs.sendMessage(id, { token: null })
-        .catch((err) => console.error('sendMessage', err))
-    }))
-      .catch((err) => console.error('query', err))
   }
 
   const onError = (e) => {
@@ -48,20 +35,26 @@ function App () {
   }
   const [apolloClient, setApolloClient] = useState(buildApolloClient(token, uuid, onError))
 
-  const onNewToken = (newToken) => {
-    window.localStorage.setItem('auth-token', newToken)
-    setApolloClient(buildApolloClient(newToken, uuid, onError))
-    setToken(newToken)
-    // eslint-disable-next-line no-undef
-    console.log({ waitingTokenListeners })
-    // eslint-disable-next-line no-undef
-    for (const sendToken of waitingTokenListeners) {
-      console.log('sending token')
-      sendToken({ token: newToken })
+  const onNewToken = useCallback((message) => {
+    console.log('Content : received new message', message)
+    if (message?.token) {
+      console.log('Content : rebuilding apollo')
+      setApolloClient(buildApolloClient(message.token, uuid, onError))
+      setToken(message.token)
     }
+  }, [setApolloClient, buildApolloClient, setToken])
+
+  useEffect(() => {
+    // console.log('Listening to new tokens')
+    // browser.runtime.onMessage.addListener(onNewToken)
+    // return () => browser.runtime.onMessage.removeListener(onNewToken)
     // eslint-disable-next-line no-undef
-    waitingTokenListeners = []
-  }
+    browser.runtime.sendMessage({
+      ask: 'token'
+    })
+      .then(onNewToken)
+      .catch((err) => console.error('Message answer error', err))
+  }, [onNewToken])
 
   // const isMobile = useMediaQuery(normalTheme.breakpoints.down('sm'))
   return (
@@ -70,13 +63,19 @@ function App () {
         <ErrorHandler error={error}>
           <ApolloProvider client={apolloClient}>
             { !token
-              ? <Login onNewToken={onNewToken} />
+              ? 'NOT AUTHENTICATED'
               : (
                 <>
                   <Logo height="4em" width="4em" />
-                  <Button onClick={onDisconnect}>
-                    Disconnect
-                  </Button>
+                  Test
+                  <a
+                    className="App-link"
+                    href="https://reactjs.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Learn React
+                  </a>
                 </>
                 ) }
           </ApolloProvider>
@@ -86,4 +85,4 @@ function App () {
   )
 }
 
-export default App
+export default Content

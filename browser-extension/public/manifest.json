@@ -24,6 +24,14 @@
       "js": ["static/js/content.js"]
     }
   ],
+  "background": {
+    "scripts": ["static/js/background.js"]
+  },
+  "permissions": [
+    "*://localhost:3331/*",
+    "<all_urls>",
+    "webRequest", "storage"
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",

@@ -1583,6 +1583,13 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
+"@molaux/mui-utils@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@molaux/mui-utils/-/mui-utils-1.1.1.tgz#e451956f464ebcc2cfb49898fbb92ce6584538de"
+  integrity sha512-XADHAlEl5R9HV0qdHg5ZEEKMIhsylNMzKzFZIVSZW/yfuH3i7X0GLQaldOwDShgtpy705qkN336eLN+oIQtRwA==
+  dependencies:
+    prop-types "^15.7.2"
+
 "@mui/core@5.0.0-alpha.48":
   version "5.0.0-alpha.48"
   resolved "https://registry.yarnpkg.com/@mui/core/-/core-5.0.0-alpha.48.tgz#ed9517bd3d2c2da12142f1958df2503567be459a"
@@ -1594,6 +1601,13 @@
     clsx "^1.1.1"
     prop-types "^15.7.2"
     react-is "^17.0.2"
+
+"@mui/icons-material@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.0.1.tgz#fb7ffeba0b3604aab4a9b91644d2fc1aabb3b4f1"
+  integrity sha512-AZehR/Uvi9VodsNPk9ae1lENKrf1evqx9suiP6VIqu7NxjZOlw/m/yA2gRAMmLEmIGr7EChfi/wcXuq6BpM9vw==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
 
 "@mui/material@^5.0.0-rc.0":
   version "5.0.1"
@@ -3844,6 +3858,11 @@ dotenv@9.0.2:
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-9.0.2.tgz#dacc20160935a37dea6364aa1bef819fb9b6ab05"
   integrity sha512-I9OvvrHp4pIARv4+x9iuewrWycX6CcZtoAu1XrzPxc5UygMJXJZYmBsynku8IkrJwgypE5DGNjDPmPRhDCptUg==
+
+dotenv@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
+  integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
 
 duplexer@^0.1.1:
   version "0.1.2"
@@ -7676,9 +7695,9 @@ react-app-rewired@^2.1.8:
   dependencies:
     semver "^5.6.0"
 
-react-dev-utils@/opt/usersLocalData/marco/src/foreign/create-react-app/packages/react-dev-utils/react-dev-utils-v11.0.4.tgz, react-dev-utils@^11.0.4:
+react-dev-utils@/home.local/marco-local/src/sandbox/react-dev-utils-v11.0.4.tgz, react-dev-utils@^11.0.4:
   version "11.0.4"
-  resolved "/opt/usersLocalData/marco/src/foreign/create-react-app/packages/react-dev-utils/react-dev-utils-v11.0.4.tgz#44ec096a475d78d1d414abe383ad00a802045953"
+  resolved "/home.local/marco-local/src/sandbox/react-dev-utils-v11.0.4.tgz#44ec096a475d78d1d414abe383ad00a802045953"
   dependencies:
     "@babel/code-frame" "^7.10.4"
     address "1.1.2"
@@ -7734,9 +7753,9 @@ react-refresh@^0.10.0:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.10.0.tgz#2f536c9660c0b9b1d500684d9e52a65e7404f7e3"
   integrity sha512-PgidR3wST3dDYKr6b4pJoqQFpPGNKDSCDx4cZoshjXipw3LzO7mG1My2pwEzz2JVkF+inx3xRpDeQLFQGH/hsQ==
 
-"react-scripts@file:../../../foreign/create-react-app/packages/react-scripts/react-scripts-v4.0.3.tgz":
+"react-scripts@file:../../../sandbox/react-scripts-v4.0.3.tgz":
   version "4.0.3"
-  resolved "file:../../../foreign/create-react-app/packages/react-scripts/react-scripts-v4.0.3.tgz#c263405467165146105ab81989fec60a95118654"
+  resolved "file:../../../sandbox/react-scripts-v4.0.3.tgz#c263405467165146105ab81989fec60a95118654"
   dependencies:
     "@babel/core" "7.14.2"
     "@pmmmwh/react-refresh-webpack-plugin" "0.5.0-rc.3"
@@ -9213,7 +9232,7 @@ webpack-sources@^3.2.0:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.1.tgz#251a7d9720d75ada1469ca07dbb62f3641a05b6d"
   integrity sha512-t6BMVLQ0AkjBOoRTZgqrWm7xbXMBzD+XDq2EZ96+vMfn3qKgsvdXZhbPZ4ElUOpdv4u+iiGe+w3+J75iy/bYGA==
 
-webpack@5.41.1, webpack@^5.41.1, webpack@^5.54.0:
+webpack@5.41.1, webpack@^5.54.0:
   version "5.54.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.54.0.tgz#629f0cd14c7a4340af758a3c7cef25c50670ae4d"
   integrity sha512-MAVKJMsIUotOQKzFOmN8ZkmMlj7BOyjDU6t1lomW9dWOme5WTStzGa3HMLdV1KYD1AiFETGsznL4LMSvj4tukw==

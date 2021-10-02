@@ -8,9 +8,8 @@ import { onError } from '@apollo/client/link/error'
 
 import { createUploadLink } from 'apollo-upload-client'
 
-const isLocalElectron = false
-
 const buildApolloClient = (token, uuid, onAuthError) => {
+  console.log(process.env)
   const errorLink = onError((operation) => {
     const { graphQLErrors, networkError } = operation
     if (graphQLErrors) {
@@ -31,13 +30,13 @@ const buildApolloClient = (token, uuid, onAuthError) => {
       // }
       onAuthError(networkError)
       // eslint-disable-next-line no-console
-      console.log('[##Network error]:', networkError)
+      console.log('[##Network error]:', networkError, { uri: `ws${process.env.REACT_APP_GRAPHQL_IS_SECURED === 'yes' ? 's' : ''}://${process.env.REACT_APP_GRAPHQL_HOST}:${process.env.REACT_APP_GRAPHQL_PORT}${process.env.REACT_APP_GRAPHQL_ENDPOINT_PATH}`, token })
     }
   })
 
   const wsLink = token
     ? new WebSocketLink({
-      uri: `ws${isLocalElectron || window.location.protocol === 'https:' ? 's' : ''}://${isLocalElectron ? process.env.REACT_APP_GRAPHQL_HOST : window.location.hostname}:${process.env.REACT_APP_GRAPHQL_PORT}${process.env.REACT_APP_GRAPHQL_ENDPOINT_PATH}`,
+      uri: `ws${process.env.REACT_APP_GRAPHQL_IS_SECURED === 'yes' ? 's' : ''}://${process.env.REACT_APP_GRAPHQL_HOST}:${process.env.REACT_APP_GRAPHQL_PORT}${process.env.REACT_APP_GRAPHQL_ENDPOINT_PATH}`,
       options: {
         reconnect: true,
         connectionParams: {
@@ -48,7 +47,7 @@ const buildApolloClient = (token, uuid, onAuthError) => {
     })
     : null
 
-  const httpLink = createUploadLink({ uri: `http${isLocalElectron || window.location.protocol === 'https:' ? 's' : ''}://${isLocalElectron ? process.env.REACT_APP_GRAPHQL_HOST : window.location.hostname}:${process.env.REACT_APP_GRAPHQL_PORT}${process.env.REACT_APP_GRAPHQL_ENDPOINT_PATH}` })
+  const httpLink = createUploadLink({ uri: `http${process.env.REACT_APP_GRAPHQL_IS_SECURED === 'yes' ? 's' : ''}://${process.env.REACT_APP_GRAPHQL_HOST}:${process.env.REACT_APP_GRAPHQL_PORT}${process.env.REACT_APP_GRAPHQL_ENDPOINT_PATH}` })
 
   const link = wsLink
     ? split(
