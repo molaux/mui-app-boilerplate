@@ -9,7 +9,6 @@ import { onError } from '@apollo/client/link/error'
 import { createUploadLink } from 'apollo-upload-client'
 
 const buildApolloClient = (token, uuid, onAuthError) => {
-  console.log(process.env)
   const errorLink = onError((operation) => {
     const { graphQLErrors, networkError } = operation
     if (graphQLErrors) {
@@ -25,9 +24,6 @@ const buildApolloClient = (token, uuid, onAuthError) => {
     }
 
     if (networkError) {
-      // if(onAuthError) {
-      //   onAuthError(networkError)
-      // }
       onAuthError(networkError)
       // eslint-disable-next-line no-console
       console.log('[##Network error]:', networkError, { uri: `ws${process.env.REACT_APP_GRAPHQL_IS_SECURED === 'yes' ? 's' : ''}://${process.env.REACT_APP_GRAPHQL_HOST}:${process.env.REACT_APP_GRAPHQL_PORT}${process.env.REACT_APP_GRAPHQL_ENDPOINT_PATH}`, token })

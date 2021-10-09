@@ -8,11 +8,11 @@
 
 const { DataTypes, Model } = require('sequelize')
 
-class Address extends Model {
+class Bookmark extends Model {
 }
 
 module.exports = (sequelize, extend) => {
-  Address.init(extend({
+  Bookmark.init(extend({
     id: {
       type: DataTypes.INTEGER,
       field: 'id',
@@ -31,58 +31,49 @@ module.exports = (sequelize, extend) => {
       allowNull: false,
       defaultValue: sequelize.fn('NOW')
     },
+    url: {
+      type: DataTypes.STRING(4096),
+      field: 'url',
+      allowNull: false
+    },
     comment: {
       type: DataTypes.TEXT,
       field: 'comment',
       allowNull: false,
       defaultValue: ''
     },
-    label: {
-      type: DataTypes.STRING(200),
-      field: 'label'
-    },
-    street: {
-      type: DataTypes.STRING(45),
-      field: 'street',
-      allowNull: false
-    },
-    zipCode: {
-      type: DataTypes.STRING(45),
-      field: 'zip_code',
-      allowNull: false
-    },
-    city: {
-      type: DataTypes.STRING(45),
-      field: 'city',
-      allowNull: false
-    },
-    country: {
-      type: DataTypes.STRING(45),
-      field: 'country',
-      allowNull: false
+    visits: {
+      type: DataTypes.INTEGER,
+      field: 'visits',
+      allowNull: false,
+      defaultValue: 0
     }
   }), {
     sequelize: sequelize,
-    modelName: 'Address',
-    tableName: 'address',
+    modelName: 'Bookmark',
+    tableName: 'bookmark',
+    indexes: [
+      {
+        name: 'fk_boukmark_user1_idx',
+        fields: ['user_id']
+      }
+    ],
     timestamps: true,
     underscored: true,
     syncOnAssociation: false
   })
 
-  Address.associate = () => {
-    // 1 <=> N association
-    Address.hasMany(sequelize.models.User, {
+  Bookmark.associate = () => {
+    // N <=> 1 association
+    Bookmark.belongsTo(sequelize.models.User, {
       foreignKey: {
-        name: 'addressId',
+        name: 'userId',
         allowNull: false
       },
-      onUpdate: 'CASCADE',
-      onDelete: 'RESTRICT',
-      targetKey: 'id',
-      as: 'Users'
+      onUpdate: 'NO ACTION',
+      targetKey: 'id'
     })
   }
 
-  return Address
+  return Bookmark
 }

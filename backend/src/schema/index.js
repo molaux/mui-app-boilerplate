@@ -14,6 +14,10 @@ import {
 } from './authentication'
 
 import { mutations as remoteLoggerMutations } from './remoteLogger'
+import {
+  mutations as configurationMutations,
+  queries as configurationQueries
+} from './configuration'
 
 import { extraFields as countryExtraFields } from './country'
 
@@ -67,7 +71,8 @@ const schema = dbs => {
           //   }
           // },
           ...queries,
-          ...authenticationQueries({ modelsTypes, nameFormatter, logger })
+          ...authenticationQueries({ modelsTypes, nameFormatter, logger }),
+          ...configurationQueries()
         }, 'query'),
         // non secured query
         serverInfos: {
@@ -99,7 +104,8 @@ const schema = dbs => {
         ...authenticationMutations,
         ...securizeAllResolvers({
           ...mutations,
-          ...remoteLoggerMutations()
+          ...remoteLoggerMutations(),
+          ...configurationMutations()
           // ...otherMutations()
         }, 'mutation')
       })

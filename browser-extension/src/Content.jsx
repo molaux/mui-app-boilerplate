@@ -16,7 +16,7 @@ import ErrorHandler from './ui/ErrorHandler'
 
 const uuid = generateUUID()
 
-function Content () {
+function Content ({ url }) {
   const [error, setError] = useState(null)
   const [token, setToken] = useState(window.localStorage.getItem('auth-token'))
 
@@ -37,24 +37,27 @@ function Content () {
 
   const onNewToken = useCallback((message) => {
     console.log('Content : received new message', message)
-    if (message?.token) {
-      console.log('Content : rebuilding apollo')
-      setApolloClient(buildApolloClient(message.token, uuid, onError))
-      setToken(message.token)
-    }
+    console.log('Content : rebuilding apollo')
+    setApolloClient(buildApolloClient(message?.token || null, uuid, onError))
+    setToken(message?.token || null)
   }, [setApolloClient, buildApolloClient, setToken])
 
   useEffect(() => {
-    // console.log('Listening to new tokens')
-    // browser.runtime.onMessage.addListener(onNewToken)
-    // return () => browser.runtime.onMessage.removeListener(onNewToken)
+    if (!token) {
+      console.log('Asking for token')
+      // eslint-disable-next-line no-undef
+      browser.runtime.sendMessage({
+        ask: 'token'
+      })
+        .then(onNewToken)
+        .catch((err) => console.error('Message answer error', err))
+    }
+    console.log('Listening to new tokens')
     // eslint-disable-next-line no-undef
-    browser.runtime.sendMessage({
-      ask: 'token'
-    })
-      .then(onNewToken)
-      .catch((err) => console.error('Message answer error', err))
-  }, [onNewToken])
+    browser.runtime.onMessage.addListener(onNewToken)
+    // eslint-disable-next-line no-undef
+    return () => browser.runtime.onMessage.removeListener(onNewToken)
+  }, [onNewToken, token])
 
   // const isMobile = useMediaQuery(normalTheme.breakpoints.down('sm'))
   return (
@@ -67,15 +70,7 @@ function Content () {
               : (
                 <>
                   <Logo height="4em" width="4em" />
-                  Test
-                  <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Learn React
-                  </a>
+                  {url}
                 </>
                 ) }
           </ApolloProvider>

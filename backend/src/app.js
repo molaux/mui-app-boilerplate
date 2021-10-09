@@ -38,6 +38,8 @@ export default async () => {
 
   await umzug.up()
 
+  // console.log(await databases.own.models.User.findOne())
+
   console.log('Building Apollo server...')
   const finalSchema = schema(databases)
   const apolloServer = new ApolloServer({

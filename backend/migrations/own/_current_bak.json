@@ -62,77 +62,6 @@
             },
             "indexes": []
         },
-        "bookmark": {
-            "tableName": "bookmark",
-            "schema": {
-                "id": {
-                    "field": "id",
-                    "primaryKey": true,
-                    "autoIncrement": true,
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "createdAt": {
-                    "field": "created_at",
-                    "allowNull": false,
-                    "defaultValue": {
-                        "internal": true,
-                        "value": "Sequelize.Fn"
-                    },
-                    "seqType": "Sequelize.DATE"
-                },
-                "updatedAt": {
-                    "field": "updated_at",
-                    "allowNull": false,
-                    "defaultValue": {
-                        "internal": true,
-                        "value": "Sequelize.Fn"
-                    },
-                    "seqType": "Sequelize.DATE"
-                },
-                "url": {
-                    "field": "url",
-                    "allowNull": false,
-                    "seqType": "Sequelize.STRING(4096)"
-                },
-                "comment": {
-                    "field": "comment",
-                    "allowNull": false,
-                    "defaultValue": {
-                        "value": ""
-                    },
-                    "seqType": "Sequelize.TEXT"
-                },
-                "visits": {
-                    "field": "visits",
-                    "allowNull": false,
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "userId": {
-                    "allowNull": false,
-                    "name": "userId",
-                    "references": {
-                        "model": "user",
-                        "key": "id"
-                    },
-                    "onDelete": "NO ACTION",
-                    "onUpdate": "NO ACTION",
-                    "field": "user_id",
-                    "seqType": "Sequelize.INTEGER"
-                }
-            },
-            "indexes": {
-                "da445e7e4ee835e2a108c17bf8eeb0e8e85f9ef2": {
-                    "name": "fk_boukmark_user1_idx",
-                    "fields": [
-                        "user_id"
-                    ],
-                    "options": {
-                        "indexName": "fk_boukmark_user1_idx",
-                        "name": "fk_boukmark_user1_idx"
-                    }
-                }
-            }
-        },
         "boukmark": {
             "tableName": "boukmark",
             "schema": {
@@ -631,5 +560,5 @@
             "indexes": []
         }
     },
-    "revision": 4
+    "revision": 3
 }

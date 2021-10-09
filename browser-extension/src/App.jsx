@@ -18,6 +18,18 @@ import ErrorHandler from './ui/ErrorHandler'
 
 const uuid = generateUUID()
 
+// eslint-disable-next-line no-undef
+const sendToken = (token) => browser.tabs.query({
+  currentWindow: true,
+  active: true
+}).then((tabs) => tabs.map(({ id }) => {
+  console.log('Sending disconnect to ', id)
+  // eslint-disable-next-line no-undef
+  return browser.tabs.sendMessage(id, { token })
+    .catch((err) => console.error('sendMessage', err))
+}))
+  .catch((err) => console.error('query', err))
+
 function App () {
   const [error, setError] = useState(null)
   const [token, setToken] = useState(window.localStorage.getItem('auth-token'))
@@ -27,16 +39,7 @@ function App () {
     setToken(null)
     setApolloClient(buildApolloClient(null, uuid, onError))
     // eslint-disable-next-line no-undef
-    browser.tabs.query({
-      currentWindow: true,
-      active: true
-    }).then((tabs) => tabs.map(({ id }) => {
-      console.log('Sending disconnect to ', id)
-      // eslint-disable-next-line no-undef
-      return browser.tabs.sendMessage(id, { token: null })
-        .catch((err) => console.error('sendMessage', err))
-    }))
-      .catch((err) => console.error('query', err))
+    sendToken(null)
   }
 
   const onError = (e) => {
@@ -49,18 +52,14 @@ function App () {
   const [apolloClient, setApolloClient] = useState(buildApolloClient(token, uuid, onError))
 
   const onNewToken = (newToken) => {
+    console.log('Recieving new token', newToken)
     window.localStorage.setItem('auth-token', newToken)
+
+    console.log('Sending new token')
+    sendToken(newToken)
+
     setApolloClient(buildApolloClient(newToken, uuid, onError))
     setToken(newToken)
-    // eslint-disable-next-line no-undef
-    console.log({ waitingTokenListeners })
-    // eslint-disable-next-line no-undef
-    for (const sendToken of waitingTokenListeners) {
-      console.log('sending token')
-      sendToken({ token: newToken })
-    }
-    // eslint-disable-next-line no-undef
-    waitingTokenListeners = []
   }
 
   // const isMobile = useMediaQuery(normalTheme.breakpoints.down('sm'))
