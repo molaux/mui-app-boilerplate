@@ -31,16 +31,20 @@ import { ProfileContext } from './components/login/Context'
 
 import './App.css'
 
-// const Configuration = lazy(() => import('./components/configuration/Configuration'))
+const Configuration = lazy(() => import('./components/configuration/Configuration'))
+const Bookmarks = lazy(() => import('./components/bookmarks/Bookmarks'))
 
-const AppContent = ({ classes, match, module, onLoaded }) => (module === 'something' || match.params.module === 'something'
-  ? null
-  : (
-    <Greetings
-      className={classes.content}
-      onLoaded={onLoaded}
-    />
-    )
+const AppContent = ({ classes, match, module, onLoaded }) => (
+  module === 'bookmarks' || match.params.module === 'bookmarks'
+    ? <Bookmarks className={classes.content} />
+    : module === 'configuration' || match.params.module === 'configuration'
+      ? <Configuration className={classes.content} />
+      : (
+        <Greetings
+          className={classes.content}
+          onLoaded={onLoaded}
+        />
+        )
 )
 
 /**

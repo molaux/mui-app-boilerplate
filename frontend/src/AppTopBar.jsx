@@ -15,7 +15,7 @@ import isElectron from 'is-electron'
 
 // import Notifications from './components/notifications/Notifications'
 import BugReport from './ui/BugReport'
-import { build } from '../package.json'
+import pkg from '../package.json'
 import icon from './ui/logo.svg'
 
 class AppTopBar extends Component {
@@ -38,7 +38,7 @@ class AppTopBar extends Component {
             <div>
               <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                 <img width={32} src={icon} alt="logo" style={{ verticalAlign: 'middle', marginRight: '0.5em', marginTop: '-0.2em', color: 'white' }} />
-                {build.productName}
+                {pkg.build.productName}
               </Typography>
             </div>
           </Hidden>
@@ -98,12 +98,6 @@ AppTopBar.propTypes = {
     title: PropTypes.string,
     grow: PropTypes.string,
     subTitle: PropTypes.string
-  }).isRequired,
-  searchContext: PropTypes.shape({
-    indexInfos: PropTypes.shape({
-      date: PropTypes.instanceOf(Date),
-      total: PropTypes.number
-    })
   }).isRequired,
   theme: PropTypes.shape({
     palette: PropTypes.shape({

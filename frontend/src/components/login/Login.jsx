@@ -11,7 +11,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import { makeStyles } from '@mui/styles'
 import { useMutation, gql } from '@apollo/client'
 import icon from '../../ui/logo.svg'
-import { build } from '../../../package.json'
+import pkg from '../../../package.json'
 
 import { reversedTheme as theme } from '../../ui/theme'
 
@@ -84,7 +84,7 @@ export const Login = (props) => {
           >
             <Box style={{ textAlign: 'center', fontSize: '1.5em' }}>
               <img width={64} src={icon} alt="logo" style={{ verticalAlign: 'middle', marginRight: '0.5em', marginTop: '-0.2em', color: 'white' }} />
-              <span style={{ color: 'white' }}>{build.productName}</span>
+              <span style={{ color: 'white' }}>{pkg.build.productName}</span>
             </Box>
             <TextField
               error={error !== null}

@@ -41,12 +41,6 @@ const Greetings = ({ className, onLoaded }) => {
 
 Greetings.propTypes = {
   className: PropTypes.string,
-  searchContext: PropTypes.shape({
-    indexInfos: PropTypes.shape({
-      date: PropTypes.instanceOf(Date),
-      total: PropTypes.number
-    })
-  }).isRequired,
   onLoaded: PropTypes.func
 }
 

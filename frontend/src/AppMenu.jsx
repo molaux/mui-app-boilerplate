@@ -15,11 +15,10 @@ import Collapse from '@mui/material/Collapse'
 
 import {
   Home as HomeIcon,
-  Equalizer as StatsIcon,
   MoreVert as MoreIcon,
   ExitToApp as LogoutIcon,
   Settings as SettingsIcon,
-  Build as ToolsIcon
+  Bookmarks as BookmarksIcon
 } from '@mui/icons-material'
 
 import List from '@mui/material/List'
@@ -33,29 +32,22 @@ import { ProfileContext } from './components/login/Context'
 
 const menuEntries = (profile, onDisconnect) => [
   {
-    label: 'Accueil',
+    label: 'Home',
     value: 'home',
     Icon: HomeIcon,
     path: '/',
     search: ''
   },
-  {
-    label: 'Outils',
-    value: 'outils',
-    Icon: ToolsIcon,
-    path: '/outils',
-    search: ''
-  },
-  ...profile.hasModule('Statistics')
+  ...profile.isAdmin() || profile.hasModule('Bookmarks')
     ? [{
-        label: 'Statistiques',
-        value: 'statistiques',
-        Icon: StatsIcon,
-        path: '/statistiques',
+        label: 'Bookmarks',
+        value: 'bookmarks',
+        Icon: BookmarksIcon,
+        path: '/bookmarks',
         search: ''
       }]
     : [],
-  ...profile.hasOneModuleOf(['Configuration', 'User', 'Group'])
+  ...profile.isAdmin() || profile.hasOneModuleOf(['Configuration', 'User', 'Group'])
     ? [{
         label: 'Configuration',
         value: 'configuration',
@@ -65,7 +57,7 @@ const menuEntries = (profile, onDisconnect) => [
       }]
     : [],
   {
-    label: 'Se déconnecter',
+    label: 'Disconnect',
     value: 'disconnect',
     Icon: LogoutIcon,
     path: '',

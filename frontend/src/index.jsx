@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
@@ -18,23 +19,81 @@ import * as serviceWorker from './serviceWorker'
 
 import { ProfileProvider } from './components/login/Context'
 
+import { ConfigurationProvider, ConfigurationContext } from './components/configuration/Context'
+
 import buildApolloClient from './apollo'
 import { Login } from './components/login/Login'
-import { default as normalTheme, lightThemeDense as denseTheme } from './ui/theme'
+import { default as normalTheme, lightThemeDense as denseTheme, darkTheme, darkThemeDense } from './ui/theme'
 import ErrorHandler from './ui/ErrorHandler'
 
-import { build } from '../package.json'
+import pkg from '../package.json'
 
 let basePath = process.env.PUBLIC_URL
 basePath = basePath.length > 0 && basePath[basePath.count - 1] === '/' ? basePath.substring(0, -1) : basePath
 const uuid = generateUUID()
 
+const ThemizedApp = ({ onNewToken, token, error, onDisconnect }) => {
+  const {
+    configuration
+  } = useContext(ConfigurationContext)
+
+  const isMobile = useMediaQuery(normalTheme.breakpoints.down('sm'))
+
+  console.log('app', configuration.theme)
+  const theme = isMobile
+    ? configuration.theme
+      ? configuration.theme === 'dark'
+        ? darkThemeDense
+        : denseTheme
+      : denseTheme
+    : configuration.theme === 'dark'
+      ? configuration.theme
+        ? darkTheme
+        : normalTheme
+      : normalTheme
+
+  return (
+    <ThemeProvider theme={theme}>
+      <StyledEngineProvider injectFirst>
+        { !token
+          ? <Login onNewToken={onNewToken} />
+          : (
+            <ErrorHandler error={error}>
+              <ProfileProvider disconnect={onDisconnect}>
+                <BrowserRouter basename={basePath}>
+                  <CRUDFProvider>
+                    <Switch>
+                      <Route exact path="/" render={(props) => <App {...props} module="home" onDisconnect={onDisconnect} />} />
+                      <Route exact path="/:module" render={(props) => <App {...props} onDisconnect={onDisconnect} />} />
+                    </Switch>
+                  </CRUDFProvider>
+                </BrowserRouter>
+              </ProfileProvider>
+            </ErrorHandler>
+            ) }
+      </StyledEngineProvider>
+    </ThemeProvider>
+  )
+}
+
+ThemizedApp.propTypes = {
+  token: PropTypes.string,
+  onNewToken: PropTypes.func.isRequired,
+  error: PropTypes.shape({}),
+  onDisconnect: PropTypes.func.isRequired
+}
+
+ThemizedApp.defaultProps = {
+  token: null,
+  error: undefined
+}
+
 const AuthenticatedApp = () => {
-  const [error, setError] = useState(null)
   const [token, setToken] = useState(window.localStorage.getItem('auth-token'))
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    document.title = build.productName
+    document.title = pkg.build.productName
   }, [])
 
   const onDisconnect = () => {
@@ -58,29 +117,17 @@ const AuthenticatedApp = () => {
     setToken(newToken)
   }
 
-  const isMobile = useMediaQuery(normalTheme.breakpoints.down('sm'))
   return (
-    <ThemeProvider theme={isMobile ? denseTheme : normalTheme}>
-      <StyledEngineProvider injectFirst>
-        <ApolloProvider client={apolloClient}>
-          { !token
-            ? <Login onNewToken={onNewToken} />
-            : (
-              <ErrorHandler error={error}>
-                <ProfileProvider disconnect={onDisconnect}>
-                  <BrowserRouter basename={basePath}>
-                    <CRUDFProvider>
-                      <Switch>
-                        <Route exact path="/" render={(props) => <App {...props} module="home" onDisconnect={onDisconnect} />} />
-                      </Switch>
-                    </CRUDFProvider>
-                  </BrowserRouter>
-                </ProfileProvider>
-              </ErrorHandler>
-              ) }
-        </ApolloProvider>
-      </StyledEngineProvider>
-    </ThemeProvider>
+    <ApolloProvider client={apolloClient}>
+      <ConfigurationProvider>
+        <ThemizedApp
+          token={token}
+          onNewToken={onNewToken}
+          onDisconnect={onDisconnect}
+          error={error}
+        />
+      </ConfigurationProvider>
+    </ApolloProvider>
   )
 }
 

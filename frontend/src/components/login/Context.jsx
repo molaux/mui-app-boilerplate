@@ -74,7 +74,7 @@ const ProfileProvider = ({ children, disconnect }) => {
 
   const profile = useMemo(() => ({
     profile: profileData,
-    isAdmin: () => profileData?.Groups.find((group) => group.name === 'Administrateur'),
+    isAdmin: () => profileData?.Groups.find((group) => group.name === 'Admin'),
     is: is(groupsSet),
     isOneOf: isOneOf(groupsSet),
     hasPermissions: hasPermissions(permissionsSet),
