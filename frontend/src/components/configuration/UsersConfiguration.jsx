@@ -11,12 +11,12 @@ import {
 const addressConfiguration = {
   translations: {
     fields: {
-      label: 'Libellé',
-      street: 'Rue',
-      zipCode: 'Code postal',
-      city: 'Ville',
-      country: 'Pays',
-      comment: 'Commentaire'
+      label: 'Name',
+      street: 'Street',
+      zipCode: 'Zipcode',
+      city: 'Town',
+      country: 'Country',
+      comment: 'Comment'
     }
   },
   layout: {
@@ -61,27 +61,27 @@ const UsersConfiguration = ({
     }}
     translations={{
       fields: {
-        createdAt: 'Date de création',
-        updatedAt: 'Date de mise à jour',
-        firstName: 'Prénom',
-        lastName: 'Nom',
-        name: 'Nom complet',
-        comment: 'Commentaire',
-        enabled: 'Actif',
-        password: 'Mot de passe',
-        authenticationType: 'Type d\'authentification',
+        createdAt: 'Creation date',
+        updatedAt: 'Last modification date',
+        firstName: 'Firstname',
+        lastName: 'Lastname',
+        name: 'Complete name',
+        comment: 'Comment',
+        enabled: 'Active',
+        password: 'Password',
+        authenticationType: 'Authentication type',
         login: 'Login',
-        phone: 'Téléphone',
+        phone: 'Phone',
         email: 'Mail',
-        Address: 'Adresse',
-        Groups: 'Groupes',
-        Permissions: 'Permissions particulières'
+        Address: 'Address',
+        Groups: 'Groups',
+        Permissions: 'Extra permissions'
       },
       type: {
-        singular: 'Utilisateur',
-        plural: 'Utilisateurs',
-        'User creation': 'Nouvel utilisateur',
-        'User edition': 'Modifier un utilisateur'
+        singular: 'User',
+        plural: 'Users',
+        'User creation': 'New user',
+        'User edition': 'Update user'
       }
     }}
     listLayout={{

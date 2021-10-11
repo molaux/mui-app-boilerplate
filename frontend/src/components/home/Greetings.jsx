@@ -33,7 +33,7 @@ const Greetings = ({ className, onLoaded }) => {
 
       <StatusTypography>
         <Typography component="div" variant="caption">Client : {packageInfos.version} / {process.env.NODE_ENV}</Typography>
-        <Typography component="div" variant="caption">Serveur : {serverInfosLoading ? '...' : <>{serverInfosData?.serverInfos.version} / {serverInfosData?.serverInfos.env}</>}</Typography>
+        <Typography component="div" variant="caption">Server : {serverInfosLoading ? '...' : <>{serverInfosData?.serverInfos.version} / {serverInfosData?.serverInfos.env}</>}</Typography>
       </StatusTypography>
     </div>
   )

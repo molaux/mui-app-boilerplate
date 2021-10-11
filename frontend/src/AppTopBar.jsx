@@ -13,7 +13,6 @@ import IconButton from '@mui/material/IconButton'
 import Box from '@mui/material/Box'
 import isElectron from 'is-electron'
 
-// import Notifications from './components/notifications/Notifications'
 import BugReport from './ui/BugReport'
 import pkg from '../package.json'
 import icon from './ui/logo.svg'
@@ -32,8 +31,6 @@ class AppTopBar extends Component {
     return (
       <AppBar position="fixed" className={classes.appBarRoot}>
         <Toolbar className={classes.toolbar}>
-          <BugReport />
-          {/* <Notifications className={classes.notificationIcon} /> */}
           <Hidden smDown implementation="css">
             <div>
               <Typography className={classes.title} variant="h6" color="inherit" noWrap>
@@ -43,6 +40,7 @@ class AppTopBar extends Component {
             </div>
           </Hidden>
           <div className={classes.grow} />
+          <BugReport />
           {isElectron() && (process.env.REACT_APP_DESKTOP_FRAMED || 'no') === 'no'
             ? (
               <Box style={{

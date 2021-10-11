@@ -44,12 +44,11 @@ const GeneralConfiguration = () => {
     configuration,
     setConfiguration
   } = useContext(ConfigurationContext)
-  console.log('conf', { configuration })
   const classes = useStyles()
 
   return (
     <>
-      <Typography gutterBottom variant="h5">Zone</Typography>
+      <Typography gutterBottom variant="h5">Theme</Typography>
       <FormControl variant="standard" className={classes.formControl}>
         <Select
           labelId="theme-select-label"

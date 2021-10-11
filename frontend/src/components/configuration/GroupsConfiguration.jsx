@@ -16,17 +16,17 @@ const GroupsConfiguration = ({ className, initialView, onLink }) => (
     }}
     translations={{
       fields: {
-        createdAt: 'Date de création',
-        updatedAt: 'Date de mise à jour',
-        name: 'Nom',
-        comment: 'Commentaire',
-        Users: 'Membres'
+        createdAt: 'Creation date',
+        updatedAt: 'Last modification date',
+        name: 'Name',
+        comment: 'Comment',
+        Users: 'Members'
       },
       type: {
-        singular: 'Groupe',
-        plural: 'Groupes',
-        'Group creation': 'Nouveau groupe',
-        'Group edition': 'Modifier un groupe'
+        singular: 'Group',
+        plural: 'Groups',
+        'Group creation': 'New group',
+        'Group edition': 'Update group'
       }
     }}
     listLayout={{

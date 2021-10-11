@@ -1668,10 +1668,10 @@
     lodash "^4.17.15"
     tmp-promise "^3.0.2"
 
-"@molaux/mui-crudf@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@molaux/mui-crudf/-/mui-crudf-1.1.1.tgz#9f626f7afe4c8e83bc07e85e534a54d567e9b86e"
-  integrity sha512-UGH8/+lp3dnMk2N3MgjnXhlzQJMPyRG3kva8C40c5xHSO7cpjsRzjuUVxoOIkmHKkhj12lLKAwL1Q8W+MMNjug==
+"@molaux/mui-crudf@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@molaux/mui-crudf/-/mui-crudf-1.1.2.tgz#54d3661d9fb99fbfe3393016f5871fc11b88b2d3"
+  integrity sha512-lapnptWzqz67E/+/Br0djCEwGomQ9pKy2r5uymghLqYEJ7AG3uDeecGFh6w7pvabKcNSub0bS1puvpzR8jJtoA==
   dependencies:
     "@molaux/mui-utils" "^1.1.1"
     fast-deep-equal "^3.1.3"
@@ -1684,6 +1684,13 @@
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@molaux/mui-utils/-/mui-utils-1.1.1.tgz#e451956f464ebcc2cfb49898fbb92ce6584538de"
   integrity sha512-XADHAlEl5R9HV0qdHg5ZEEKMIhsylNMzKzFZIVSZW/yfuH3i7X0GLQaldOwDShgtpy705qkN336eLN+oIQtRwA==
+  dependencies:
+    prop-types "^15.7.2"
+
+"@molaux/mui-utils@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@molaux/mui-utils/-/mui-utils-1.1.3.tgz#4e5f95439ba8609c330dc334a7d0ef95c7f0b81a"
+  integrity sha512-mYzfiIUtxsYZAw2OL1YHzw1KOoSkcv45RwqHA2zARRYq/Ng1K7YpbArvoJrbOpgXhV2OcDeavLxlRDzhBl2xjQ==
   dependencies:
     prop-types "^15.7.2"
 
