@@ -1,7 +1,3 @@
-# MUI App Boilerplate
-
-The goal is to provide a node / React base application built on Material-UI. It provides a complete workflow including authentication, permission management and fast developpment tools.
-
 # Backend
 
 The workflow depends on `php` and `composer` since it uses [a fork of MySQL Workbench Schema Exporter / Node exporter](https://github.com/molaux/node-exporter) to generate Sequelize models. Thus, the API is driven by [MySQL Workbench](http://www.mysql.com/products/workbench/)
@@ -71,7 +67,3 @@ $ yarn start:prod
 ## API documentation
 
 In order to convert the Sequelize models to a GraphQL schema, the sytem uses [Sequelize GraphQL Schema Builder](https://github.com/molaux/sequelize-graphql-schema-builder).
-
-# Frontend
-
-## install
