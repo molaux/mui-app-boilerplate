@@ -1,7 +1,7 @@
 # Firefox extension
 
 This extension provides authentication, data retrieval, mutation, and injetions in google search as a test.
-It provides realtime update from backend server.
+It uses realtime update from backend server.
 
 ## start
 

@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@mui/material/styles'
+import { PropTypes } from 'prop-types'
 // import useMediaQuery from '@mui/material/useMediaQuery'
 
 // V5 temporary migration fix
@@ -9,14 +10,34 @@ import StyledEngineProvider from '@mui/material/StyledEngineProvider'
 
 import { v4 as generateUUID } from 'uuid'
 // import pkg from '../package.json'
-import { ReactComponent as Logo } from './ui/logo.svg'
 import buildApolloClient from './apollo'
 import { lightThemeDense as denseTheme } from './ui/theme'
 import ErrorHandler from './ui/ErrorHandler'
+import ContentApp from './ContentApp'
+import { ProfileProvider } from './components/login/Context'
 
 const uuid = generateUUID()
 
-function Content ({ url }) {
+const ProfiledApp = ({ url, onDisconnect, linkEl }) => {
+  try {
+    return (
+      <ProfileProvider disconnect={onDisconnect}>
+        <ContentApp url={url} linkEl={linkEl} />
+      </ProfileProvider>
+    )
+  } catch (e) {
+    console.log('err', e)
+  }
+  return null
+}
+
+ProfiledApp.propTypes = {
+  url: PropTypes.string.isRequired,
+  linkEl: PropTypes.node.isRequired,
+  onDisconnect: PropTypes.func.isRequired
+}
+
+function Content ({ url, linkEl }) {
   const [error, setError] = useState(null)
   const [token, setToken] = useState(window.localStorage.getItem('auth-token'))
 
@@ -36,15 +57,12 @@ function Content ({ url }) {
   const [apolloClient, setApolloClient] = useState(buildApolloClient(token, uuid, onError))
 
   const onNewToken = useCallback((message) => {
-    console.log('Content : received new message', message)
-    console.log('Content : rebuilding apollo')
     setApolloClient(buildApolloClient(message?.token || null, uuid, onError))
     setToken(message?.token || null)
   }, [setApolloClient, buildApolloClient, setToken])
 
   useEffect(() => {
     if (!token) {
-      console.log('Asking for token')
       // eslint-disable-next-line no-undef
       browser.runtime.sendMessage({
         ask: 'token'
@@ -52,7 +70,6 @@ function Content ({ url }) {
         .then(onNewToken)
         .catch((err) => console.error('Message answer error', err))
     }
-    console.log('Listening to new tokens')
     // eslint-disable-next-line no-undef
     browser.runtime.onMessage.addListener(onNewToken)
     // eslint-disable-next-line no-undef
@@ -60,24 +77,28 @@ function Content ({ url }) {
   }, [onNewToken, token])
 
   // const isMobile = useMediaQuery(normalTheme.breakpoints.down('sm'))
-  return (
-    <ThemeProvider theme={denseTheme}>
-      <StyledEngineProvider injectFirst>
-        <ErrorHandler error={error}>
-          <ApolloProvider client={apolloClient}>
-            { !token
-              ? 'NOT AUTHENTICATED'
-              : (
-                <>
-                  <Logo height="4em" width="4em" />
-                  {url}
-                </>
-                ) }
-          </ApolloProvider>
-        </ErrorHandler>
-      </StyledEngineProvider>
-    </ThemeProvider>
-  )
+  try {
+    return (
+      <ThemeProvider theme={denseTheme}>
+        <StyledEngineProvider injectFirst>
+          <ErrorHandler error={error}>
+            <ApolloProvider client={apolloClient}>
+              { !token
+                ? 'NOT AUTHENTICATED'
+                : <ProfiledApp onDisconnect={onDisconnect} url={url} linkEl={linkEl} />}
+            </ApolloProvider>
+          </ErrorHandler>
+        </StyledEngineProvider>
+      </ThemeProvider>
+    )
+  } catch (e) {
+    console.log('err', e)
+  }
+}
+
+Content.propTypes = {
+  url: PropTypes.string.isRequired,
+  linkEl: PropTypes.node.isRequired
 }
 
 export default Content

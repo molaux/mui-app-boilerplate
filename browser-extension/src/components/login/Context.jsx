@@ -42,53 +42,58 @@ const ProfileProvider = ({ children, disconnect }) => {
   const permissionsSet = useRef(new Set())
   const groupsSet = useRef(new Set())
   const [profileData, setProfileData] = useState(null)
-  useQuery(PROFILE_QUERY, {
-    onCompleted: ({ profile }) => {
-      permissionsSet.current = new Set([
-        ...profile.Permissions.map(({ name }) => name),
-        ...profile.Groups.map((group) => group.Permissions.map(({ name }) => name)).flat()
-      ])
-      groupsSet.current = new Set(profile.Groups.map(({ name }) => name))
-      setProfileData(profile)
-    }
-  })
-
-  useSubscription(PROFILE_UPDATE_SUBSCRIPTION, {
-    onSubscriptionData: ({
-      subscriptionData: {
-        data: { profileUpdated: profile }
+  try {
+    useQuery(PROFILE_QUERY, {
+      onCompleted: ({ profile }) => {
+        permissionsSet.current = new Set([
+          ...profile.Permissions.map(({ name }) => name),
+          ...profile.Groups.map((group) => group.Permissions.map(({ name }) => name)).flat()
+        ])
+        groupsSet.current = new Set(profile.Groups.map(({ name }) => name))
+        setProfileData(profile)
       }
-    }) => {
-      if (!profile.enabled) {
-        disconnect()
+    })
+
+    useSubscription(PROFILE_UPDATE_SUBSCRIPTION, {
+      onSubscriptionData: ({
+        subscriptionData: {
+          data: { profileUpdated: profile }
+        }
+      }) => {
+        if (!profile.enabled) {
+          disconnect()
+        }
+
+        permissionsSet.current = new Set([
+          ...profile.Permissions.map(({ name }) => name),
+          ...profile.Groups.map((group) => group.Permissions.map(({ name }) => name)).flat()
+        ])
+        groupsSet.current = new Set(profile.Groups.map(({ name }) => name))
+        setProfileData(profile)
       }
+    })
 
-      permissionsSet.current = new Set([
-        ...profile.Permissions.map(({ name }) => name),
-        ...profile.Groups.map((group) => group.Permissions.map(({ name }) => name)).flat()
-      ])
-      groupsSet.current = new Set(profile.Groups.map(({ name }) => name))
-      setProfileData(profile)
-    }
-  })
+    const profile = useMemo(() => ({
+      profile: profileData,
+      isAdmin: () => profileData?.Groups.find((group) => group.name === 'Administrateur'),
+      is: is(groupsSet),
+      isOneOf: isOneOf(groupsSet),
+      hasPermissions: hasPermissions(permissionsSet),
+      hasOnePermissionOf: hasOnePermissionOf(permissionsSet),
+      hasModule: hasModule(permissionsSet),
+      hasOneModuleOf: hasOneModuleOf(permissionsSet),
+      hasModules: hasAllModules(permissionsSet)
+    }), [profileData])
 
-  const profile = useMemo(() => ({
-    profile: profileData,
-    isAdmin: () => profileData?.Groups.find((group) => group.name === 'Administrateur'),
-    is: is(groupsSet),
-    isOneOf: isOneOf(groupsSet),
-    hasPermissions: hasPermissions(permissionsSet),
-    hasOnePermissionOf: hasOnePermissionOf(permissionsSet),
-    hasModule: hasModule(permissionsSet),
-    hasOneModuleOf: hasOneModuleOf(permissionsSet),
-    hasModules: hasAllModules(permissionsSet)
-  }), [profileData])
-
-  return (
-    <ProfileContext.Provider value={profile}>
-      {children}
-    </ProfileContext.Provider>
-  )
+    return (
+      <ProfileContext.Provider value={profile}>
+        {children}
+      </ProfileContext.Provider>
+    )
+  } catch (e) {
+    console.log('err', e)
+  }
+  return null
 }
 
 ProfileProvider.propTypes = {

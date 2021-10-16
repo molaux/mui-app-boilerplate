@@ -1,7 +1,7 @@
 const { spawnSync } = require('child_process')
 const path = require('path')
 
-const source = path.join('src', 'ui', 'icon.png')
+const source = path.join('src', 'ui', 'logo.svg')
 const sizes = [
   16, 32, 48, 70, 96, 120, 128, 152, 167, 180, 196, 228, 270, 310
 ]
