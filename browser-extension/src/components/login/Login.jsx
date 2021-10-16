@@ -46,7 +46,6 @@ export const Login = (props) => {
   const onConfirm = async () => {
     let token = null
     try {
-      console.log('trying to authenticate', uid, password)
       token = (await login({
         variables: {
           login: uid,
