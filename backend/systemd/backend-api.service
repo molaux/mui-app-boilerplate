@@ -1,0 +1,15 @@
+[Unit]
+Description=Backend API
+#Documentation=https://tobedefined
+After=network.target
+
+[Service]
+Environment=NODE_VERSION=14
+Type=simple
+User=node
+WorkingDirectory=/home/node/backend-api
+ExecStart=/home/node/.nvm/nvm-exec yarn start
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
