@@ -24,6 +24,7 @@ import { AppDesktopMenu, AppMobileMenu } from './AppMenu'
 
 import { ProfileContext } from './components/login/Context'
 
+import { requiredPropsCheck } from './utils/props'
 // import UserIntrospection from './introspections/User.json'
 // import GroupIntrospection from './introspections/Group.json'
 // import PermissionIntrospection from './introspections/Permission.json'
@@ -46,6 +47,24 @@ const AppContent = ({ classes, match, module, onLoaded }) => (
         />
         )
 )
+
+AppContent.propTypes = {
+  module: requiredPropsCheck(['module', 'match']),
+  match: requiredPropsCheck(['module', 'match']),
+  onLoaded: PropTypes.func,
+  classes: PropTypes.shape({
+    content: PropTypes.string
+  })
+}
+
+AppContent.defaultProps = {
+  module: undefined,
+  match: undefined,
+  onLoaded: () => {},
+  classes: {
+    root: null
+  }
+}
 
 /**
  * Main application entry point
@@ -105,13 +124,6 @@ const App = ({ classes, module, onDisconnect, match }) => {
       <AppLoadingAnimation open={initialLoad || !profile} />
     </>
   )
-}
-
-const requiredPropsCheck = (propsList) => (props, propName, componentName) => {
-  if (!propsList.reduce((isPresent, prop) => isPresent || props[prop] !== undefined, false)) {
-    return new Error(`One of '${propsList.join('\', \'')}' is required by '${componentName}' component.`)
-  }
-  return null
 }
 
 App.propTypes = {

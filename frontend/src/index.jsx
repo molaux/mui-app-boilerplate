@@ -39,7 +39,6 @@ const ThemizedApp = ({ onNewToken, token, error, onDisconnect }) => {
 
   const isMobile = useMediaQuery(normalTheme.breakpoints.down('sm'))
 
-  console.log('app', configuration.theme)
   const theme = isMobile
     ? configuration.theme
       ? configuration.theme === 'dark'
