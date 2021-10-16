@@ -19,15 +19,13 @@ import ErrorHandler from './ui/ErrorHandler'
 const uuid = generateUUID()
 
 // eslint-disable-next-line no-undef
-const sendToken = (token) => browser.tabs.query({
-  currentWindow: true,
-  active: true
-}).then((tabs) => tabs.map(({ id }) => {
-  console.log('Sending disconnect to ', id)
-  // eslint-disable-next-line no-undef
-  return browser.tabs.sendMessage(id, { token })
-    .catch((err) => console.error('sendMessage', err))
-}))
+const sendToken = (token) => browser.tabs.query({})
+  .then((tabs) => tabs.map(({ id }) => {
+    console.log('Sending disconnect to ', id)
+    // eslint-disable-next-line no-undef
+    return browser.tabs.sendMessage(id, { token })
+      .catch((err) => console.error('sendMessage', err))
+  }))
   .catch((err) => console.error('query', err))
 
 function App () {

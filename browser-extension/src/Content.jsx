@@ -33,7 +33,7 @@ const ProfiledApp = ({ url, onDisconnect, linkEl }) => {
 
 ProfiledApp.propTypes = {
   url: PropTypes.string.isRequired,
-  linkEl: PropTypes.node.isRequired,
+  linkEl: PropTypes.instanceOf(window.Element).isRequired,
   onDisconnect: PropTypes.func.isRequired
 }
 
@@ -98,7 +98,7 @@ function Content ({ url, linkEl }) {
 
 Content.propTypes = {
   url: PropTypes.string.isRequired,
-  linkEl: PropTypes.node.isRequired
+  linkEl: PropTypes.instanceOf(window.Element).isRequired
 }
 
 export default Content

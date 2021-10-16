@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types'
 // import useMediaQuery from '@mui/material/useMediaQuery'
 
 // V5 temporary migration fix
-import { Button } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 
 import { ReactComponent as Logo } from './ui/logo.svg'
 
@@ -151,7 +151,6 @@ function ContentApp ({ url, linkEl }) {
       }
     }
   })
-
   return (
     <>
       <Logo height="2em" width="2em" style={{ marginBottom: '-0.5em' }} />
@@ -161,16 +160,23 @@ function ContentApp ({ url, linkEl }) {
       >
         {bookmark ? 'Remove' : 'Add'} Bookmark
       </Button>
-      {bookmarksLoading || createBookmarkLoading || deleteBookmarkLoading || !profile
-        ? '...'
-        : bookmark && `Visits: ${bookmark?.visits}`}
+      <Typography>
+        {bookmarksLoading || createBookmarkLoading || deleteBookmarkLoading || !profile
+          ? '...'
+          : bookmark && `Added by ${bookmark.User.name} at ${new Date(bookmark.createdAt).toLocaleString()}.`}
+      </Typography>
+      <Typography>
+        {bookmarksLoading || createBookmarkLoading || deleteBookmarkLoading || !profile
+          ? '...'
+          : bookmark && bookmark?.visits > 0 ? `Visited ${bookmark?.visits} time${bookmark?.visits > 1 ? 's' : ''} (last visited at ${new Date(bookmark.updatedAt).toLocaleString()}).` : ''}
+      </Typography>
     </>
   )
 }
 
 ContentApp.propTypes = {
   url: PropTypes.string.isRequired,
-  linkEl: PropTypes.node.isRequired
+  linkEl: PropTypes.instanceOf(window.Element).isRequired
 }
 
 export default ContentApp

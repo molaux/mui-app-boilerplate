@@ -74,7 +74,7 @@ export const Login = (props) => {
         direction="column"
         alignItems="center"
         justifyContent="center"
-        style={{ minHeight: '100vh' }}
+        style={{ minHeight: '100vh', padding: theme.spacing(3) }}
       >
         <Grid item xs={9} sm={3}>
           <Grid
@@ -83,7 +83,7 @@ export const Login = (props) => {
             direction="column"
           >
             <Box style={{ textAlign: 'center', fontSize: '1.5em' }}>
-              <Logo height="2em" width="2em" />
+              <Logo height="2em" width="2em" style={{ marginBottom: '-0.5em', marginRight: theme.spacing(1) }} />
               <span style={{ color: 'white' }}>{pkg.build.productName}</span>
             </Box>
             <TextField
