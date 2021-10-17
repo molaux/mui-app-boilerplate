@@ -8,12 +8,12 @@ import { ThemeProvider } from '@mui/material/styles'
 import StyledEngineProvider from '@mui/material/StyledEngineProvider'
 
 import { v4 as generateUUID } from 'uuid'
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 // import pkg from '../package.json'
 import { ReactComponent as Logo } from './ui/logo.svg'
 import buildApolloClient from './apollo'
 import { StyledLogin } from './components/login/Login'
-import { lightThemeDense as denseTheme } from './ui/theme'
+import { reversedThemeDense as theme } from './ui/theme'
 import ErrorHandler from './ui/ErrorHandler'
 
 const uuid = generateUUID()
@@ -62,19 +62,33 @@ function App () {
 
   // const isMobile = useMediaQuery(normalTheme.breakpoints.down('sm'))
   return (
-    <ThemeProvider theme={denseTheme}>
+    <ThemeProvider theme={theme}>
       <StyledEngineProvider injectFirst>
         <ErrorHandler error={error}>
           <ApolloProvider client={apolloClient}>
             { !token
               ? <StyledLogin onNewToken={onNewToken} />
               : (
-                <>
-                  <Logo height="4em" width="4em" />
-                  <Button onClick={onDisconnect}>
-                    Disconnect
-                  </Button>
-                </>
+                <Box
+                  sx={{
+                    padding: theme.spacing(4),
+                    backgroundColor: theme.palette.background.default
+                  }}
+                >
+                  <Box style={{ textAlign: 'center', fontSize: '1.5em', marginBottom: theme.spacing(4) }}>
+                    <Logo height="1.5em" width="1.5em" style={{ marginBottom: '-0.3em', marginRight: theme.spacing(2) }} />
+                    <span style={{ color: 'white' }}>MUI Boilerplate App extension</span>
+                  </Box>
+                  <Box sx={{ display: 'flex', justifyContent: 'right' }}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={onDisconnect}
+                    >
+                      Disconnect
+                    </Button>
+                  </Box>
+                </Box>
                 ) }
           </ApolloProvider>
         </ErrorHandler>
