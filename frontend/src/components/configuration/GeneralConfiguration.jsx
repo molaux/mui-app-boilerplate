@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => createStyles({
   }
 }))
 
-export const withGeneralConfiguration = (Component) => (props) => {
+export const withConfiguration = (Component) => (props) => {
   const {
     generalConfiguration,
     setGeneralConfiguration,

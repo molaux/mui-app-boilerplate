@@ -4,6 +4,7 @@ const palette = {
   // primary: { main: '#0e4194', contrastText: '#ffffff' },
   // secondary: { main: '#ec285d', contrastText: '#ffffff' }
 }
+
 const fontSizeDense = 11
 const denseConfig = {
   props: {
@@ -72,25 +73,17 @@ const denseConfig = {
   spacing: 3
 }
 
-const status = {
-  ok: '#99d420',
-  error: '#f25c19',
-  warn: '#f9b00f'
-}
-
 const typography = { useNextVariants: true }
 
 export const lightTheme = createTheme({
-  themeName: 'Biocoop UI light theme',
+  themeName: 'Light theme',
   palette,
-  status,
   typography
 })
 
 export const lightThemeDense = createTheme({
-  themeName: 'Biocoop UI light theme dense',
+  themeName: 'Light theme dense',
   palette,
-  status,
   typography: {
     ...typography,
     fontSize: fontSizeDense
@@ -99,16 +92,14 @@ export const lightThemeDense = createTheme({
 })
 
 export const darkTheme = createTheme({
-  themeName: 'Biocoop UI dark theme',
+  themeName: 'Dark theme',
   palette: { mode: 'dark' },
-  status,
   typography
 })
 
 export const darkThemeDense = createTheme({
-  themeName: 'Biocoop UI dark theme dense',
+  themeName: 'Dark theme dense',
   palette: { mode: 'dark' },
-  status,
   typography: {
     ...typography,
     fontSize: fontSizeDense
@@ -117,30 +108,28 @@ export const darkThemeDense = createTheme({
 })
 
 export const toolTheme = createTheme({
-  themeName: 'Biocoop UI tool theme',
+  themeName: 'Tool theme',
   palette: {
     ...lightTheme.palette,
     ...palette,
     background: {
-      default: status.warn,
-      paper: status.warn
+      default: lightTheme.palette.warning.main,
+      paper: lightTheme.palette.warning.main
     }
   },
-  status,
   typography
 })
 
 export const toolThemeDense = createTheme({
-  themeName: 'Biocoop UI tool theme dense',
+  themeName: 'Tool theme dense',
   palette: {
     ...lightTheme.palette,
     ...palette,
     background: {
-      default: status.warn,
-      paper: status.warn
+      default: lightTheme.palette.warning.main,
+      paper: lightTheme.palette.warning.main
     }
   },
-  status,
   typography: {
     ...typography,
     fontSize: fontSizeDense
@@ -149,7 +138,7 @@ export const toolThemeDense = createTheme({
 })
 
 export const reversedTheme = createTheme({
-  themeName: 'Biocoop UI reversed theme',
+  themeName: 'Reversed theme',
   palette: {
     ...darkTheme.palette,
     ...palette,
@@ -157,14 +146,13 @@ export const reversedTheme = createTheme({
       default: lightTheme.palette.primary.main,
       paper: lightTheme.palette.primary.main
     },
-    primary: { main: status.warn }
+    primary: { main: lightTheme.palette.warning.main }
   },
-  status,
   typography
 })
 
 export const reversedThemeDense = createTheme({
-  themeName: 'Biocoop UI reversed theme dense',
+  themeName: 'Reversed theme dense',
   palette: {
     ...darkTheme.palette,
     ...palette,
@@ -172,9 +160,8 @@ export const reversedThemeDense = createTheme({
       default: lightTheme.palette.primary.main,
       paper: lightTheme.palette.primary.main
     },
-    primary: { main: status.warn, contrastText: '#ffffff' }
+    primary: { main: lightTheme.palette.warning.main, contrastText: '#ffffff' }
   },
-  status,
   typography: {
     ...typography,
     fontSize: fontSizeDense

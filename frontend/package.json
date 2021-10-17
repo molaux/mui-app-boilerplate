@@ -56,6 +56,8 @@
     "graphql": "^15.6.0",
     "graphql-anywhere": "^4.2.7",
     "is-electron": "^2.2.0",
+    "electron-reload": "^2.0.0-alpha.1",
+    "electron-is-dev": "^2.0.0",
     "is-electron-renderer": "^2.0.1",
     "json5": "^2.2.0",
     "klona": "^2.0.4",
@@ -81,7 +83,7 @@
   },
   "scripts": {
     "start:desktop:dev": "cross-env NODE_ENV=dev nodemon --exec \"\"electron .\"\"",
-    "prebuild:desktop": "sed -i -e s/\\\"homepage\\\"/\\\"homepage-react\\\"/ -e s/\\\"homepage-electron\\\"/\\\"homepage\\\"/ package.json ; yarn build-web ; sed -i -e s/\\\"homepage\\\"/\\\"homepage-electron\\\"/ -e s/\\\"homepage-react\\\"/\\\"homepage\\\"/ package.json",
+    "prebuild:desktop": "sed -i -e s/\\\"homepage\\\"/\\\"homepage-react\\\"/ -e s/\\\"homepage-electron\\\"/\\\"homepage\\\"/ package.json ; yarn build:web:production ; sed -i -e s/\\\"homepage\\\"/\\\"homepage-electron\\\"/ -e s/\\\"homepage-react\\\"/\\\"homepage\\\"/ package.json",
     "build:desktop": "yarn electron-builder build -c.extraMetadata.main=build/electron.js -c.extraMetadata.homepage-react=./ --publish never",
     "build:desktop:debug": "DEBUG=electron-builder yarn electron-builder build -c.extraMetadata.main=build/electron.js -c.extraMetadata.homepage-react=./ --publish never",
     "start:web:dev:secured": "HTTPS=true react-app-rewired start",
@@ -97,7 +99,7 @@
     "publish:web:production": "rm -rf prod-build.last/{*,.htaccess} && mv prod-build/{*,.htaccess} prod-build.last/  && cp -r --preserve build/{*,.htaccess} prod-build/",
     "publish:web:test": "rm -rf test-build.last/{*,.htaccess} && mv test-build/{*,.htaccess} test-build.last/  && cp -r --preserve build/{*,.htaccess} test-build/",
     "eject": "react-scripts eject",
-    "build-doc": "find -type f -name \"*.js\" | egrep -v \"./(prod-)?build\" | xargs dirname | uniq | xargs -n 1 ./build-doc.sh",
+    "build:doc": "find -type f -name \"*.js\" | egrep -v \"./(prod-)?build\" | xargs dirname | uniq | xargs -n 1 ./build-doc.sh",
     "build:web:audit": "sh -ac '. ./.env.test; react-scripts build --stats && webpack-bundle-analyzer build/bundle-stats.json -m static -r build/bundle-stats.html -O'",
     "generate:assets": "node bin/build-icons.js"
   },
@@ -111,8 +113,6 @@
   "devDependencies": {
     "electron": "^13.2.1",
     "electron-builder": "^22.11.7",
-    "electron-is-dev": "^2.0.0",
-    "electron-reload": "^2.0.0-alpha.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-standard": "^16.0.3",

@@ -22,7 +22,7 @@ import { ProfileProvider } from './components/login/Context'
 import { ConfigurationProvider, ConfigurationContext } from './components/configuration/Context'
 
 import buildApolloClient from './apollo'
-import { Login } from './components/login/Login'
+import { StyledLogin } from './components/login/Login'
 import { default as normalTheme, lightThemeDense as denseTheme, darkTheme, darkThemeDense } from './ui/theme'
 import ErrorHandler from './ui/ErrorHandler'
 
@@ -54,22 +54,18 @@ const ThemizedApp = ({ onNewToken, token, error, onDisconnect }) => {
   return (
     <ThemeProvider theme={theme}>
       <StyledEngineProvider injectFirst>
-        { !token
-          ? <Login onNewToken={onNewToken} />
-          : (
-            <ErrorHandler error={error}>
-              <ProfileProvider disconnect={onDisconnect}>
-                <BrowserRouter basename={basePath}>
-                  <CRUDFProvider>
-                    <Switch>
-                      <Route exact path="/" render={(props) => <App {...props} module="home" onDisconnect={onDisconnect} />} />
-                      <Route exact path="/:module" render={(props) => <App {...props} onDisconnect={onDisconnect} />} />
-                    </Switch>
-                  </CRUDFProvider>
-                </BrowserRouter>
-              </ProfileProvider>
-            </ErrorHandler>
-            ) }
+        <ErrorHandler error={error}>
+          <ProfileProvider disconnect={onDisconnect}>
+            <BrowserRouter basename={basePath}>
+              <CRUDFProvider>
+                <Switch>
+                  <Route exact path="/" render={(props) => <App {...props} module="home" onDisconnect={onDisconnect} />} />
+                  <Route exact path="/:module" render={(props) => <App {...props} onDisconnect={onDisconnect} />} />
+                </Switch>
+              </CRUDFProvider>
+            </BrowserRouter>
+          </ProfileProvider>
+        </ErrorHandler>
       </StyledEngineProvider>
     </ThemeProvider>
   )
@@ -118,14 +114,18 @@ const AuthenticatedApp = () => {
 
   return (
     <ApolloProvider client={apolloClient}>
-      <ConfigurationProvider>
-        <ThemizedApp
-          token={token}
-          onNewToken={onNewToken}
-          onDisconnect={onDisconnect}
-          error={error}
-        />
-      </ConfigurationProvider>
+      { !token
+        ? <StyledLogin onNewToken={onNewToken} />
+        : (
+          <ConfigurationProvider>
+            <ThemizedApp
+              token={token}
+              onNewToken={onNewToken}
+              onDisconnect={onDisconnect}
+              error={error}
+            />
+          </ConfigurationProvider>
+          )}
     </ApolloProvider>
   )
 }

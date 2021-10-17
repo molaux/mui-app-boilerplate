@@ -12,7 +12,7 @@ import { Button } from '@mui/material'
 // import pkg from '../package.json'
 import { ReactComponent as Logo } from './ui/logo.svg'
 import buildApolloClient from './apollo'
-import { Login } from './components/login/Login'
+import { StyledLogin } from './components/login/Login'
 import { lightThemeDense as denseTheme } from './ui/theme'
 import ErrorHandler from './ui/ErrorHandler'
 
@@ -67,7 +67,7 @@ function App () {
         <ErrorHandler error={error}>
           <ApolloProvider client={apolloClient}>
             { !token
-              ? <Login onNewToken={onNewToken} />
+              ? <StyledLogin onNewToken={onNewToken} />
               : (
                 <>
                   <Logo height="4em" width="4em" />
