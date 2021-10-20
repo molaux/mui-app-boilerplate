@@ -101,7 +101,6 @@ const UsersConfiguration = ({
       },
       hide: [
         'id', 'firstName', 'lastName', 'password', 'authenticationType',
-        'Customers', 'Logs', 'PlanningTemplates', 'WorkPeriods',
         'createdAt', 'updatedAt'
       ]
     }}
@@ -117,7 +116,6 @@ const UsersConfiguration = ({
       ],
       hide: [
         'id', 'lastName', 'firstName', 'authenticationType',
-        'Customers', 'Logs', 'PlanningTemplates', 'WorkPeriods',
         'password'
       ],
       components: {
@@ -136,8 +134,7 @@ const UsersConfiguration = ({
       ],
       hide: [
         'id', 'name', 'authenticationType',
-        'addressId', 'Customers', 'Logs', 'PlanningTemplates', 'WorkPeriods',
-        'createdAt', 'updatedAt'
+        'addressId', 'createdAt', 'updatedAt'
       ],
       components: {
         Address: EditAddressForm
@@ -155,8 +152,7 @@ const UsersConfiguration = ({
       ],
       hide: [
         'id', 'name', 'authenticationType',
-        'addressId', 'Customers', 'Logs', 'PlanningTemplates', 'WorkPeriods',
-        'createdAt', 'updatedAt'
+        'addressId', 'createdAt', 'updatedAt'
       ],
       components: {
         Address: CreateAddressForm

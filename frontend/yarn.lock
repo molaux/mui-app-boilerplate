@@ -1698,10 +1698,10 @@
     lodash "^4.17.15"
     tmp-promise "^3.0.2"
 
-"@molaux/mui-crudf@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@molaux/mui-crudf/-/mui-crudf-1.1.4.tgz#2dc16e6b0ea17f64e06f9e7e08f9f60f9ae80c51"
-  integrity sha512-Hbl7Q9rC37fJRcBkvYydLkqxDH2judkQOcBHX9lQi7Yd2MrOkxHhw63XfqwcbZ8E2kXOs8fTEmtkdjlBRf8H3Q==
+"@molaux/mui-crudf@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@molaux/mui-crudf/-/mui-crudf-1.1.5.tgz#665950036ce3d11712bc0008ba7d1d87214c9a58"
+  integrity sha512-HjTkouS/E6Q/vXjA9Ne99u6dA6sSI1CAMhHdpjo5Lh38cB7MByqUWb3Npuy4QjXjzIjJCFRpFuURD9erWmFp2g==
   dependencies:
     "@molaux/mui-utils" "^1.1.4"
     fast-deep-equal "^3.1.3"

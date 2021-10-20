@@ -34,8 +34,7 @@ const Configuration = ({ className }) => {
   const [linkedView, setLinkedView] = useState(null)
   const [tabsHistory, setTabsHistory] = useState([])
   const { hasModule, isAdmin } = useContext(ProfileContext)
-  const [selectedTab, setSelectedTab] = useState(isAdmin() || hasModule('Configuration') ? 'General' : hasModule('User') ? 'User' : hasModule('Group') ? 'Group' : null)
-  console.log(process.env)
+  const [selectedTab, setSelectedTab] = useState(isAdmin() || hasModule('Configuration') ? 'Configuration' : hasModule('User') ? 'User' : hasModule('Group') ? 'Group' : null)
   const classes = useTabStyle()
   const handleLink = useCallback((tab, view, value) => {
     setLinkedView({ view, value })

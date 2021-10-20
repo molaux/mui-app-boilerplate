@@ -36,7 +36,7 @@
     "@date-io/date-fns": "^2.11.0",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
-    "@molaux/mui-crudf": "^1.1.4",
+    "@molaux/mui-crudf": "^1.1.5",
     "@molaux/mui-utils": "^1.1.4",
     "@mui/icons-material": "^5.0.1",
     "@mui/lab": "^5.0.0-alpha.48",
