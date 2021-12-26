@@ -13,7 +13,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import CircularProgress from '@mui/material/CircularProgress'
 
-// import { CRUDFContext } from '@molaux/mui-crudf'
+import { CRUDFContext } from '@molaux/mui-crudf'
 import { Center } from '@molaux/mui-utils'
 
 import AppLoadingAnimation from './ui/AppLoadingAnimation'
@@ -25,10 +25,10 @@ import { AppDesktopMenu, AppMobileMenu } from './AppMenu'
 import { ProfileContext } from './components/login/Context'
 
 import { requiredPropsCheck } from './utils/props'
-// import UserIntrospection from './introspections/User.json'
-// import GroupIntrospection from './introspections/Group.json'
-// import PermissionIntrospection from './introspections/Permission.json'
-// import AddressIntrospection from './introspections/Address.json'
+import UserIntrospection from './introspections/User.json'
+import GroupIntrospection from './introspections/Group.json'
+import PermissionIntrospection from './introspections/Permission.json'
+import AddressIntrospection from './introspections/Address.json'
 
 import './App.css'
 
@@ -85,13 +85,13 @@ const App = ({ classes, module, onDisconnect, match }) => {
     [module, match.params.module, setInitialLoad]
   )
 
-  // const { registerIntrospection } = useContext(CRUDFContext)
+  const { registerIntrospection } = useContext(CRUDFContext)
 
   useEffect(() => {
-    // registerIntrospection(UserIntrospection)
-    // registerIntrospection(GroupIntrospection)
-    // registerIntrospection(PermissionIntrospection)
-    // registerIntrospection(AddressIntrospection)
+    registerIntrospection(UserIntrospection)
+    registerIntrospection(GroupIntrospection)
+    registerIntrospection(PermissionIntrospection)
+    registerIntrospection(AddressIntrospection)
   }, [])
 
   return (

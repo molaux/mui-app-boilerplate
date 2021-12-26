@@ -66,7 +66,7 @@ class BugReport extends React.Component {
           <BugReportIcon />
         </IconButton>
       </Tooltip>,
-      <Mutation mutation={REPORT_MUTATION}>
+      <Mutation mutation={REPORT_MUTATION} key="mutation">
         {(createTicket, { data, loading }) => (
           <Dialog
             open={dialogOpen}
@@ -117,5 +117,5 @@ BugReport.propTypes = {
   }).isRequired
 }
 
-export default /* withApollo */(withStyles((theme) => ({
-}), { withTheme: true })(BugReport))
+export default withStyles((theme) => ({
+}), { withTheme: true })(BugReport)

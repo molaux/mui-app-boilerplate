@@ -6,30 +6,30 @@
     "productName": "Material-UI App Boilerplate"
   },
   "dependencies": {
-    "@apollo/client": "^3.4.13",
-    "@emotion/react": "^11.4.1",
-    "@emotion/styled": "^11.3.0",
-    "@molaux/mui-utils": "^1.1.4",
-    "@mui/icons-material": "^5.0.1",
-    "@mui/material": "^5.0.0-rc.0",
-    "@mui/styles": "^5.0.1",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "apollo-upload-client": "^16.0.0",
+    "@apollo/client": "^3.5.6",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@molaux/mui-utils": "^1.1.13",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/material": "^5.2.5",
+    "@mui/styles": "^5.2.3",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "apollo-upload-client": "^17.0.0",
     "dotenv": "^10.0.0",
-    "graphql": "^15.6.0",
+    "graphql": "^16.2.0",
     "graphql-anywhere": "^4.2.7",
-    "prop-types": "^15.7.2",
+    "prop-types": "^15.8.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "^5.0.0-next.47",
-    "subscriptions-transport-ws": "^0.9.19",
+    "react-scripts": "^5.0.0",
+    "subscriptions-transport-ws": "^0.11.0",
     "uuid": "^8.3.2",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^2.1.2"
   },
   "resolutions": {
-    "webpack": "^5.54.0"
+    "webpack": "^5.65.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -57,19 +57,19 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb": "^18.2.1",
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-standard": "^16.0.3",
     "eslint-config-standard-jsx": "^10.0.0",
-    "eslint-plugin-flowtype": "^6.1.0",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-react": "^7.26.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-app": "^6.2.2",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-standard": "^5.0.0",
-    "react-app-rewired": "^2.1.8"
+    "react-app-rewired": "^2.1.9"
   }
 }
