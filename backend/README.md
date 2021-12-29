@@ -68,11 +68,11 @@ $ yarn start:prod
 
 ## API documentation
 
-In order to convert the Sequelize models to a GraphQL schema, the sytem uses [Sequelize GraphQL Schema Builder](https://github.com/molaux/sequelize-graphql-schema-builder). This piece of code transforms a Sequelize schema in a ready to use GraphQL API that exposes queries, mutations and subscriptions for each Sequelize entity you generated. In addition, it exposes data types used by [MUI CRUDF](https://github.com/molaux/mui-crudf) to generate creation and update forms and validate data on client side.
+In order to convert the Sequelize models to a GraphQL schema, the system uses [Sequelize GraphQL Schema Builder](https://github.com/molaux/sequelize-graphql-schema-builder). This piece of code transforms a Sequelize schema in a ready to use GraphQL API that exposes queries, mutations and subscriptions for each Sequelize entity you generated. In addition, it exposes data types used by [MUI CRUDF](https://github.com/molaux/mui-crudf) to generate creation / update forms and validate data on client side.
 
 ## Controllers
 
-The system instaniates the schema for GraphQL server from `src/schema/index.js`. Here controllers built by [Sequelize GraphQL Schema Builder](https://github.com/molaux/sequelize-graphql-schema-builder) are merged with custom one :
+The system instanciates the schema for GraphQL server from `src/schema/index.js`. Here, controllers built by [Sequelize GraphQL Schema Builder](https://github.com/molaux/sequelize-graphql-schema-builder) are merged with custom one :
 
  * `src/schema/authentication` handles all authentication and security policy
  * `src/schema/country` demonstrates how to extend [Sequelize GraphQL Schema Builder](https://github.com/molaux/sequelize-graphql-schema-builder) auto generated API
