@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { PropTypes } from 'prop-types'
 
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { withStyles } from '@mui/styles'
 
 import BottomNavigation from '@mui/material/BottomNavigation'
@@ -29,7 +29,7 @@ import Box from '@mui/material/Box'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 import { ProfileContext } from './components/login/Context'
-
+import { withRouter } from './utils/router'
 const menuEntries = (profile, onDisconnect) => [
   {
     label: 'Home',

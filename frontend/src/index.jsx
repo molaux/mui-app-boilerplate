@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -58,10 +58,10 @@ const ThemizedApp = ({ onNewToken, token, error, onDisconnect }) => {
           <ProfileProvider disconnect={onDisconnect}>
             <BrowserRouter basename={basePath}>
               <CRUDFProvider>
-                <Switch>
-                  <Route exact path="/" render={(props) => <App {...props} module="home" onDisconnect={onDisconnect} />} />
-                  <Route exact path="/:module" render={(props) => <App {...props} onDisconnect={onDisconnect} />} />
-                </Switch>
+                <Routes>
+                  <Route path="*" element={<App module="home" onDisconnect={onDisconnect} />} />
+                  <Route exact path="/:module" element={<App onDisconnect={onDisconnect} />} />
+                </Routes>
               </CRUDFProvider>
             </BrowserRouter>
           </ProfileProvider>

@@ -9,7 +9,6 @@ import CssBaseline from '@mui/material/CssBaseline'
 import 'typeface-roboto'
 import Hidden from '@mui/material/Hidden'
 import { withStyles } from '@mui/styles'
-import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import CircularProgress from '@mui/material/CircularProgress'
 
@@ -23,6 +22,8 @@ import AppTopBar from './AppTopBar'
 import { AppDesktopMenu, AppMobileMenu } from './AppMenu'
 
 import { ProfileContext } from './components/login/Context'
+
+import { withRouter } from './utils/router'
 
 import { requiredPropsCheck } from './utils/props'
 import UserIntrospection from './introspections/User.json'

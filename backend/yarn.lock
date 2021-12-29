@@ -2411,10 +2411,10 @@ eslint-plugin-import@^2.25.3:
     resolve "^1.20.0"
     tsconfig-paths "^3.11.0"
 
-eslint-plugin-jest@^25.3.0:
-  version "25.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-25.3.0.tgz#6c04bbf13624a75684a05391a825b58e2e291950"
-  integrity sha512-79WQtuBsTN1S8Y9+7euBYwxIOia/k7ykkl9OCBHL3xuww5ecursHy/D8GCIlvzHVWv85gOkS5Kv6Sh7RxOgK1Q==
+eslint-plugin-jest@^25.3.2:
+  version "25.3.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-25.3.2.tgz#702801e37c502546fe4c4986888720f6eed3b129"
+  integrity sha512-1aPC7RRJkMCNgklHMDECw8fnzag3JBH53LaxmFkDTR7+PfMCO5V6f8XFRHoT2I+Fr4pVO9cPdRGlf7/haB2O5Q==
   dependencies:
     "@typescript-eslint/experimental-utils" "^5.0.0"
 
@@ -5484,10 +5484,10 @@ sequelize@^4.42.0:
     validator "^10.4.0"
     wkx "^0.4.1"
 
-sequelize@^6.12.2:
-  version "6.12.2"
-  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.12.2.tgz#9692650eca4c607ff40e11e8a3ba25e774edfce8"
-  integrity sha512-MjrvyROlvCs44u0XXBsjAKTKSOCI6djFyimlak4Urr6XGSpka5+PD40PlDgJSuCRwIdvyDUdAQl0cw7E68YqqQ==
+sequelize@^6.12.4:
+  version "6.12.4"
+  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-6.12.4.tgz#decb6aea8f3fc40686674046e711195a71e0f266"
+  integrity sha512-P2E8TzlV3VwdvPqTS58ctIpcAOytXdaylUUfxxnALjtMmF6I+kfNtrqTP7WQFaenOboAtXPCJReZ9MPy+Zy/Ig==
   dependencies:
     "@types/debug" "^4.1.7"
     debug "^4.3.3"
