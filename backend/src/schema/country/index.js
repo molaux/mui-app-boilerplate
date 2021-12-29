@@ -26,7 +26,7 @@ export const extraFields = ({ modelsTypes, nameFormatter }, model) => {
         if (!register.has(parent.country)) {
           register.set(
             parent.country,
-            await fetch(`https://restcountries.eu/rest/v2/name/${parent.country}`)
+            await fetch(`https://restcountries.com/v2/name/${parent.country}`)
               .then(response => {
                 if (response.ok) {
                   return response
