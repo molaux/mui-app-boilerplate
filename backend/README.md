@@ -61,6 +61,8 @@ Start against dev env and provide a playground that should be available at [http
 $ yarn start:dev
 ```
 
+By default, a user `admin` (password `admin`) is created by migrations executed at start time (see `migrations/3-default-user.cjs`). Note that by definition SQLLite in memory database is not persistent, so migrations is reexecuted at each restart.
+
 Start against prod env :
 ```bash
 $ yarn start:prod
