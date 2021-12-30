@@ -38,11 +38,6 @@
     "generate:assets": "node bin/build-icons.js",
     "watch": "node bin/watch.js"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -56,7 +51,8 @@
     ]
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.5.4",
+    "@babel/preset-react": "^7.16.5",
     "eslint": "^8.5.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-standard": "^16.0.3",

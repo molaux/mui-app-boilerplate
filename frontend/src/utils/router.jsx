@@ -2,26 +2,25 @@ import React from 'react'
 import {
   useLocation,
   useNavigate,
-  useParams,
-  useMatch
+  useParams
 } from 'react-router-dom'
 
 export const withRouter = (Component) => {
-  function ComponentWithRouterProp(props) {
-    let location = useLocation()
-    let navigate = useNavigate()
-    let params = useParams()
+  function ComponentWithRouterProp (props) {
+    const location = useLocation()
+    const navigate = useNavigate()
+    const params = useParams()
     return (
       <Component
         {...props}
         match={{ params }}
-        location={ location }
+        location={location}
         history={{ push: navigate }}
       />
     )
   }
 
-  return ComponentWithRouterProp;
+  return ComponentWithRouterProp
 }
 
 export default withRouter

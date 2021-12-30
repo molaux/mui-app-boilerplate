@@ -13,10 +13,8 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     textAlign: 'center',
     fontSize: '1.8em',
-    // fontWeight: 'bold',
     paddingTop: '20vh',
     color: 'white',
-    // textShadow: '0 0 2em rgba(255,255,255,0.7)',
     background: theme.palette.primary.main,
     whiteSpace: 'no-wrap'
   },

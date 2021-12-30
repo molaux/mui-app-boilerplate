@@ -30,6 +30,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 
 import { ProfileContext } from './components/login/Context'
 import { withRouter } from './utils/router'
+
 const menuEntries = (profile, onDisconnect) => [
   {
     label: 'Home',

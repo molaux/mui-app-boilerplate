@@ -2,9 +2,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useQuery, useSubscription, useMutation } from '@apollo/client'
 import { PropTypes } from 'prop-types'
-// import useMediaQuery from '@mui/material/useMediaQuery'
-
-// V5 temporary migration fix
 import { Button, Typography } from '@mui/material'
 
 import { ReactComponent as Logo } from './ui/logo.svg'
@@ -49,7 +46,7 @@ function ContentApp ({ url, linkEl }) {
   ] = useMutation(BOOKMARK_UPDATE_MUTATION, {
     variables: {
       input: {
-        visits: bookmark?.visits + 1
+        visits: (bookmark?.visits ?? 0) + 1
       },
       query: {
         where: {

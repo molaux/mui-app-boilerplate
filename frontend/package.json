@@ -119,6 +119,8 @@
   "devDependencies": {
     "electron": "^16.0.5",
     "electron-builder": "^22.14.5",
+    "@babel/eslint-parser": "^7.5.4",
+    "@babel/preset-react": "^7.16.5",
     "eslint": "^8.5.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-standard": "^16.0.3",
@@ -132,8 +134,7 @@
     "eslint-plugin-standard": "^5.0.0",
     "jsdoc-to-markdown": "^7.1.0",
     "nodemon": "^2.0.15",
-    "react-app-rewired": "^2.1.10",
-    "yarn-upgrade-all": "^0.5.4"
+    "react-app-rewired": "^2.1.10"
   },
   "resolutions": {
     "webpack": "^5.65.0"

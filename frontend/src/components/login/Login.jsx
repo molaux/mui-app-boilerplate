@@ -36,7 +36,7 @@ const LOGIN = gql`
   }
 `
 
-export const Login = (props) => {
+export const Login = ({ onNewToken }) => {
   const [uid, setUid] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -57,8 +57,8 @@ export const Login = (props) => {
       }))?.data.login
       if (token) {
         setError(null)
-        if (props.onNewToken) {
-          props.onNewToken(token)
+        if (onNewToken) {
+          onNewToken(token)
         }
       }
     } catch (e) {

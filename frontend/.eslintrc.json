@@ -1,6 +1,12 @@
 {
   "extends": ["airbnb", "standard"],
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
   "rules": {
     "react/jsx-props-no-spreading": 0,
     "react/state-in-constructor": 0,
@@ -8,6 +14,7 @@
     "import/no-named-default": 0,
     "no-param-reassign": 0,
     "no-shadow": 0,
+    "react/function-component-definition": 0,
     "no-restricted-syntax": [
       "error",
       {

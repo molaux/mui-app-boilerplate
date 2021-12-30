@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@mui/styles'
 
@@ -17,76 +17,63 @@ import BugReport from './ui/BugReport'
 import pkg from '../package.json'
 import icon from './ui/logo.svg'
 
-class AppTopBar extends Component {
-  state = {
-    showFilters: false
-  }
+const AppTopBar = ({ classes, theme }) => (
+  <AppBar position="fixed" className={classes.appBarRoot}>
+    <Toolbar className={classes.toolbar}>
+      <Hidden smDown implementation="css">
+        <div>
+          <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+            <img width={32} src={icon} alt="logo" style={{ verticalAlign: 'middle', marginRight: '0.5em', marginTop: '-0.2em', color: 'white' }} />
+            {pkg.build.productName}
+          </Typography>
+        </div>
+      </Hidden>
+      <div className={classes.grow} />
+      <BugReport />
+      {isElectron() && (process.env.REACT_APP_DESKTOP_FRAMED || 'no') === 'no'
+        ? (
+          <Box style={{
+            display: 'block',
+            textAlign: 'right'
+          }}
+          >
 
-  handleShowFilters = (event) => {
-    this.setState((state) => ({ showFilters: !state.showFilters }))
-  }
-
-  render () {
-    const { classes, theme } = this.props
-    return (
-      <AppBar position="fixed" className={classes.appBarRoot}>
-        <Toolbar className={classes.toolbar}>
-          <Hidden smDown implementation="css">
-            <div>
-              <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                <img width={32} src={icon} alt="logo" style={{ verticalAlign: 'middle', marginRight: '0.5em', marginTop: '-0.2em', color: 'white' }} />
-                {pkg.build.productName}
-              </Typography>
-            </div>
-          </Hidden>
-          <div className={classes.grow} />
-          <BugReport />
-          {isElectron() && (process.env.REACT_APP_DESKTOP_FRAMED || 'no') === 'no'
-            ? (
-              <Box style={{
-                display: 'block',
-                textAlign: 'right'
+            <IconButton
+              aria-label="Minimize"
+              aria-haspopup="true"
+              style={{ color: theme.palette.common.white, WebkitAppRegion: 'no-drag', margin: theme.spacing(1) }}
+              onClick={() => window.electronRemote.getCurrentWindow().minimize()}
+              size="small"
+            >
+              <MinimizeIcon />
+            </IconButton>
+            <IconButton
+              aria-label="Maximize"
+              aria-haspopup="true"
+              style={{ color: theme.palette.common.white, WebkitAppRegion: 'no-drag', margin: theme.spacing(1) }}
+              onClick={() => {
+                const win = window.electronRemote.getCurrentWindow()
+                win.isMaximized() ? win.unmaximize() : win.maximize()
               }}
-              >
-
-                <IconButton
-                  aria-label="Minimize"
-                  aria-haspopup="true"
-                  style={{ color: theme.palette.common.white, WebkitAppRegion: 'no-drag', margin: theme.spacing(1) }}
-                  onClick={() => window.electronRemote.getCurrentWindow().minimize()}
-                  size="small"
-                >
-                  <MinimizeIcon />
-                </IconButton>
-                <IconButton
-                  aria-label="Maximize"
-                  aria-haspopup="true"
-                  style={{ color: theme.palette.common.white, WebkitAppRegion: 'no-drag', margin: theme.spacing(1) }}
-                  onClick={() => {
-                    const win = window.electronRemote.getCurrentWindow()
-                    win.isMaximized() ? win.unmaximize() : win.maximize()
-                  }}
-                  size="small"
-                >
-                  <MaximizeIcon />
-                </IconButton>
-                <IconButton
-                  aria-label="Close"
-                  aria-haspopup="true"
-                  style={{ color: theme.palette.common.white, WebkitAppRegion: 'no-drag', margin: theme.spacing(1) }}
-                  onClick={() => window.electronRemote.getCurrentWindow().close()}
-                  size="small"
-                >
-                  <CloseIcon />
-                </IconButton>
-              </Box>
-              )
-            : null}
-        </Toolbar>
-      </AppBar>
-    )
-  }
-}
+              size="small"
+            >
+              <MaximizeIcon />
+            </IconButton>
+            <IconButton
+              aria-label="Close"
+              aria-haspopup="true"
+              style={{ color: theme.palette.common.white, WebkitAppRegion: 'no-drag', margin: theme.spacing(1) }}
+              onClick={() => window.electronRemote.getCurrentWindow().close()}
+              size="small"
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
+          )
+        : null}
+    </Toolbar>
+  </AppBar>
+)
 
 AppTopBar.propTypes = {
   classes: PropTypes.shape({

@@ -13,7 +13,6 @@ import { Center } from '@molaux/mui-utils'
 
 import { darkTheme } from './theme'
 import SadAnimationIcon from './SadAnimationIcon'
-import SunIcon from './SunIcon'
 
 class ErrorHandler extends React.Component {
   constructor (props) {
@@ -33,15 +32,10 @@ class ErrorHandler extends React.Component {
     if (error) {
       return (
         <Center classes={{ paper: classes.root }}>
-          <h1><SadAnimationIcon width="35%" style={{ float: 'right', margin: '0.5em' }} /><ErrorIcon className={classes.icon} fontSize="large" /> Oups ! </h1>
+          <h1><SadAnimationIcon width="35%" style={{ float: 'right', margin: '0.5em' }} /><ErrorIcon className={classes.icon} fontSize="large" /> Oops ! </h1>
 
-          <p>Quelque chose s&apos;est mal passé :</p>
-          <ul>
-            <li>la connexion réseau est coupée ou insuffisante ?</li>
-            <li>vous êtes victime d&apos;une erreur de programmation ?</li>
-            <li>votre terminal a un problème ?</li>
-          </ul>
-          <p>Le{apolloError ? 's' : null} message{apolloError ? 's' : null} associé{apolloError ? 's' : null} à cette erreur {apolloError ? 'sont' : 'est'} le{apolloError ? 's' : null} suivant{apolloError ? 's' : null} :</p>
+          <p>Something went wrong :</p>
+          <p>Message{apolloError ? 's' : null} associated {apolloError ? 'are' : 'is'} the following :</p>
           <ThemeProvider theme={darkTheme}>
             <Paper className={classes.codeBlock}>
               <p className={classes.code}>{error.message}</p>
@@ -61,7 +55,7 @@ class ErrorHandler extends React.Component {
               : null }
           </ThemeProvider>
           <p>
-            Vous pouvez toujours essayez de recharger l&apos;application pour repartir de zéro :
+            You should maybe try to restart scratch by reloading the app :
           </p>
           <Button
             color="secondary"
@@ -69,14 +63,12 @@ class ErrorHandler extends React.Component {
             startIcon={<RefreshIcon />}
             onClick={() => document.location.reload()}
           >
-            Recharger l&apos;application
+            Reload
           </Button>
           <p>
-            Si le problème persiste, merci de faire remonter les informations ci-dessus,
-            ainsi que tout élément pouvant permettre d&apos;identifier le défaut.
+            If the problem persists, please send any usefull information to maintainers.
           </p>
-          <p>Avec mes plus plates excuses (si applicables),</p>
-          <p>Marc<SunIcon style={{ fontSize: '0.80em', marginLeft: '0em', marginBottom: '-0.18em' }} /></p>
+          <p>Appologies.</p>
         </Center>
       )
     }

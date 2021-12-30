@@ -1,4 +1,4 @@
-import React, { createContext, useState, useCallback } from 'react'
+import React, { createContext, useState, useCallback, useMemo } from 'react'
 import { PropTypes } from 'prop-types'
 import { useQuery, useMutation, gql } from '@apollo/client'
 
@@ -37,13 +37,19 @@ const ConfigurationProvider = ({ children }) => {
     })
   }, [setConfiguration, saveConfiguration])
 
-  const value = {
+  const value = useMemo(() => ({
     configuration,
     setConfiguration: setThenSaveConfiguration,
     configurationLoading: loading,
     saveConfigurationLoading,
     saveConfigurationError
-  }
+  }), [
+    configuration,
+    setThenSaveConfiguration,
+    loading,
+    saveConfigurationLoading,
+    saveConfigurationError
+  ])
 
   return (
     <ConfigurationContext.Provider value={value}>
