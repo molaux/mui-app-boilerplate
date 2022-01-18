@@ -1,7 +1,7 @@
 {
   "license": "ISC",
   "type": "project",
-  "description": "GraphQL Sequelize R example",
+  "description": "MUI App Boilerplate",
 
   "config": {
       "bin-dir": "bin"
