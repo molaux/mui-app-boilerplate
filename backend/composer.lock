@@ -9,26 +9,26 @@
     "packages-dev": [
         {
             "name": "doctrine/inflector",
-            "version": "1.4.3",
+            "version": "1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "4650c8b30c753a76bf44fb2ed00117d6f367490c"
+                "reference": "4bd5c1cdfcd00e9e2d8c484f79150f67e5d355d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/4650c8b30c753a76bf44fb2ed00117d6f367490c",
-                "reference": "4650c8b30c753a76bf44fb2ed00117d6f367490c",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/4bd5c1cdfcd00e9e2d8c484f79150f67e5d355d9",
+                "reference": "4bd5c1cdfcd00e9e2d8c484f79150f67e5d355d9",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.0"
+                "php": "^7.1 || ^8.0"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^7.0",
-                "phpstan/phpstan": "^0.11",
-                "phpstan/phpstan-phpunit": "^0.11",
-                "phpstan/phpstan-strict-rules": "^0.11",
+                "doctrine/coding-standard": "^8.0",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
                 "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
             },
             "type": "library",
@@ -85,7 +85,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/inflector/issues",
-                "source": "https://github.com/doctrine/inflector/tree/1.4.x"
+                "source": "https://github.com/doctrine/inflector/tree/1.4.4"
             },
             "funding": [
                 {
@@ -101,7 +101,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-29T07:19:59+00:00"
+            "time": "2021-04-16T17:34:40+00:00"
         },
         {
             "name": "mysql-workbench-schema-exporter/mysql-workbench-schema-exporter",
@@ -167,7 +167,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/molaux/node-exporter.git",
-                "reference": "14d69f4c3cfd8c96bf540a61004a8ddc228efef0"
+                "reference": "197e5b607a3e7313450be07cee57d18ce16bda5e"
             },
             "require": {
                 "mysql-workbench-schema-exporter/mysql-workbench-schema-exporter": "dev-master",
@@ -206,6 +206,11 @@
                     "name": "Robert Vock",
                     "email": "robertvock82@gmail.com",
                     "role": "Developer"
+                },
+                {
+                    "name": "Marc-Olivier Laux",
+                    "email": "marc-olivier@matlaux.net",
+                    "role": "Developer"
                 }
             ],
             "description": "MySQL Workbench Schema Exporter for Sequelizejs",
@@ -217,7 +222,7 @@
                 "mysql workbench",
                 "sequelizejs"
             ],
-            "time": "2021-04-13T16:59:53+00:00"
+            "time": "2022-01-18T18:36:46+00:00"
         }
     ],
     "aliases": [],
@@ -230,5 +235,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }
