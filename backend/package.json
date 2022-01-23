@@ -8,7 +8,7 @@
   "version": "1.0.0-alpha.0",
   "main": "src/server.js",
   "dependencies": {
-    "@molaux/sequelize-graphql-schema-builder": "^2.1.7",
+    "@molaux/sequelize-graphql-schema-builder": "^2.1.9",
     "apollo-client": "^2.6.10",
     "apollo-link-ws": "^1.0.20",
     "apollo-server-express": "^3.5.0",
