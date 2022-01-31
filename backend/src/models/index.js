@@ -63,7 +63,7 @@ const loadModels = async () => {
     }, {}))
 
     Object.keys(models).forEach(modelName => {
-      models[modelName].associate?.()
+      models[modelName].associate?.(models)
       models[modelName].extraAssociate?.(models[modelName])
     })
 

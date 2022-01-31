@@ -42,10 +42,10 @@
     "eslint-plugin-jest": "^25.3.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
-    "jest": "^27.4.5",
+    "jest": "^27.4.7",
     "nodemon": "^2.0.15",
     "sequelize-lazy-migrations": "^1.0.4",
-    "supertest": "^6.1.6"
+    "supertest": "^6.2.2"
   },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/.bin/jest",
