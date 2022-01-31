@@ -149,5 +149,9 @@ export default async () => {
     path: process.env.API_APOLLO_PATH
   })
 
-  return { app, apolloServer, buildSubscriptionServer }
+  const stopApp = () => {
+    Object.values(databases).map((s) => s.close())
+  }
+
+  return { app, apolloServer, buildSubscriptionServer, stopApp }
 }

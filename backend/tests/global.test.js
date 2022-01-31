@@ -24,6 +24,7 @@ let subscribe
 const asyncIterators = {}
 const store = new Map()
 let httpServer
+let stopApp
 let subscriptionServer
 let wsClient
 const pubSub = new PubSub()
@@ -51,6 +52,7 @@ beforeAll(async () => {
 
   httpServer = http.createServer(server.app)
   subscriptionServer = server.buildSubscriptionServer(httpServer)
+  stopApp = server.stopApp
 
   await new Promise(resolve => httpServer.listen({ host: process.env.HOST, port: process.env.PORT }, () => resolve()))
 
@@ -64,6 +66,7 @@ beforeAll(async () => {
 afterAll(() => {
   wsClient.close()
   httpServer.close()
+  stopApp()
 })
 
 const requestsFiles = fs

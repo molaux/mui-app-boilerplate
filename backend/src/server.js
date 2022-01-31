@@ -21,7 +21,7 @@ const credentials = {
 const startServer = async () => {
   console.log(`Server starting in ${colors.red(process.env.NODE_ENV || 'development')} mode...`)
 
-  const { app, apolloServer, buildSubscriptionServer } = await appBuilder()
+  const { app, apolloServer, buildSubscriptionServer, stopApp } = await appBuilder()
 
   if (SECURED) {
     const httpsServer = https.createServer(credentials, app)
@@ -44,6 +44,7 @@ const startServer = async () => {
   function exitHandler (options, err) {
     if (options.cleanup) {
       // cleanly close other connections here
+      stopApp()
     }
 
     if (err && err.stack) {
