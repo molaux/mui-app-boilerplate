@@ -15,7 +15,9 @@ const { Umzug, SequelizeStorage } = UmzugModule
 const { execute, subscribe } = graphqlModule
 const { SubscriptionServer } = sTWSodule
 
-dotenv.config()
+dotenv.config({
+  silent: true
+})
 
 const { PubSub } = graphqlSubscriptions
 const pubSub = new PubSub()

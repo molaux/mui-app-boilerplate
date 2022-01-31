@@ -12,7 +12,9 @@ import sqliteModelConverter from './sqlite'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-dotenv.config()
+dotenv.config({
+  silent: true
+})
 
 const env = process.env.NODE_ENV || 'development'
 

@@ -7,7 +7,9 @@ import http from 'http'
 import fs from 'fs'
 import appBuilder from './app'
 
-dotenv.config()
+dotenv.config({
+  silent: true
+})
 
 const SECURED = process.env.SECURED === 'yes'
 

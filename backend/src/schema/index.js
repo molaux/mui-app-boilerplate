@@ -24,7 +24,9 @@ import { extraFields as countryExtraFields } from './country'
 const { GraphQLJSON } = _GraphQLJSON
 const { QueryTypes } = Sequelize
 
-dotenv.config()
+dotenv.config({
+  silent: true
+})
 const packageJson = Object.assign({}, {
   version: 'Unknown'
 }, packageJsonData)
