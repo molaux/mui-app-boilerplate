@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import isElectron from 'is-electron'
 
 // V5 temporary migration fix
 import StyledEngineProvider from '@mui/material/StyledEngineProvider'
@@ -27,6 +28,11 @@ import { default as normalTheme, lightThemeDense as denseTheme, darkTheme, darkT
 import ErrorHandler from './ui/ErrorHandler'
 
 import pkg from '../package.json'
+
+const isElectronProd = isElectron() && process.env.NODE_ENV !== 'development'
+const Router = isElectronProd
+  ? HashRouter
+  : BrowserRouter
 
 let basePath = process.env.PUBLIC_URL
 basePath = basePath.length > 0 && basePath[basePath.count - 1] === '/' ? basePath.substring(0, -1) : basePath
@@ -56,14 +62,14 @@ const ThemizedApp = ({ onNewToken, token, error, onDisconnect }) => {
       <StyledEngineProvider injectFirst>
         <ErrorHandler error={error}>
           <ProfileProvider disconnect={onDisconnect}>
-            <BrowserRouter basename={basePath}>
+            <Router {...!isElectronProd ? { basename: basePath } : {}}>
               <CRUDFProvider>
                 <Routes>
                   <Route path="*" element={<App module="home" onDisconnect={onDisconnect} />} />
                   <Route exact path="/:module" element={<App onDisconnect={onDisconnect} />} />
                 </Routes>
               </CRUDFProvider>
-            </BrowserRouter>
+            </Router>
           </ProfileProvider>
         </ErrorHandler>
       </StyledEngineProvider>

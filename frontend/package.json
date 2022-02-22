@@ -26,9 +26,7 @@
     },
     "win": {
       "icon": "build/icons/icon.png",
-      "target": [
-        "nsis"
-      ]
+      "target": "nsis"
     }
   },
   "dependencies": {
@@ -90,7 +88,7 @@
   "scripts": {
     "start:desktop:dev": "cross-env NODE_ENV=dev nodemon --exec \"\"electron .\"\"",
     "prebuild:desktop": "sed -i -e s/\\\"homepage\\\"/\\\"homepage-react\\\"/ -e s/\\\"homepage-electron\\\"/\\\"homepage\\\"/ package.json ; yarn build:web:production ; sed -i -e s/\\\"homepage\\\"/\\\"homepage-electron\\\"/ -e s/\\\"homepage-react\\\"/\\\"homepage\\\"/ package.json",
-    "build:desktop": "yarn electron-builder build -c.extraMetadata.main=build/electron.js -c.extraMetadata.homepage-react=./ --publish never",
+    "build:desktop": "yarn electron-builder build -c.extraMetadata.main=build/electron.js -c.extraMetadata.homepage-react=./ --publish never --linux --win",
     "build:desktop:debug": "DEBUG=electron-builder yarn electron-builder build -c.extraMetadata.main=build/electron.js -c.extraMetadata.homepage-react=./ --publish never",
     "start:web:dev:secured": "HTTPS=true react-app-rewired start",
     "start:web:dev": "react-app-rewired start",
@@ -117,8 +115,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "electron": "^16.0.5",
-    "electron-builder": "^22.14.5",
+    "electron": "^17.0.1",
+    "electron-builder": "^22.14.13",
     "@babel/eslint-parser": "^7.5.4",
     "@babel/preset-react": "^7.16.5",
     "eslint": "^8.5.0",

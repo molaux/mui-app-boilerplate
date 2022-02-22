@@ -42,7 +42,7 @@ const AppTopBar = ({ classes, theme }) => (
               aria-label="Minimize"
               aria-haspopup="true"
               style={{ color: theme.palette.common.white, WebkitAppRegion: 'no-drag', margin: theme.spacing(1) }}
-              onClick={() => window.electronRemote.getCurrentWindow().minimize()}
+              onClick={() => window.electron?.sendMessage({ action: 'minimizeWindow' })}
               size="small"
             >
               <MinimizeIcon />
@@ -51,10 +51,7 @@ const AppTopBar = ({ classes, theme }) => (
               aria-label="Maximize"
               aria-haspopup="true"
               style={{ color: theme.palette.common.white, WebkitAppRegion: 'no-drag', margin: theme.spacing(1) }}
-              onClick={() => {
-                const win = window.electronRemote.getCurrentWindow()
-                win.isMaximized() ? win.unmaximize() : win.maximize()
-              }}
+              onClick={() => window.electron?.sendMessage({ action: 'toggleMaximizeWindow' })}
               size="small"
             >
               <MaximizeIcon />
@@ -63,7 +60,7 @@ const AppTopBar = ({ classes, theme }) => (
               aria-label="Close"
               aria-haspopup="true"
               style={{ color: theme.palette.common.white, WebkitAppRegion: 'no-drag', margin: theme.spacing(1) }}
-              onClick={() => window.electronRemote.getCurrentWindow().close()}
+              onClick={() => window.electron?.sendMessage({ action: 'closeWindow' })}
               size="small"
             >
               <CloseIcon />
