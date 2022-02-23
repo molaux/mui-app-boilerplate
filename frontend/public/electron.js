@@ -5,8 +5,11 @@ const isDev = require('electron-is-dev')
 require('electron-reload')
 const path = require('path')
 const dotenv = require('dotenv')
+const { autoUpdater } = require('electron-updater')
 
 const { app, BrowserWindow, ipcMain } = electron
+
+autoUpdater.autoDownload = false
 
 if (isDev) {
   dotenv.config({
@@ -39,6 +42,7 @@ function createWindow () {
 
   if (!isDev) {
     mainWindow.setMenu(null)
+    setTimeout(() => autoUpdater.checkForUpdatesAndNotify(), 2000)
   }
 
   if (isDev) {
@@ -62,8 +66,41 @@ function createWindow () {
       case 'closeWindow':
         mainWindow.close()
         break
+      case 'quit-and-update':
+        autoUpdater.quitAndInstall()
+        break
       default:
     }
+  })
+
+  const sendMessageToWindow = (event, payload) => {
+    console.log('sendUpdaterStatusToWindow', event, payload)
+    mainWindow.webContents.send('message', { action: event, payload })
+  }
+
+  autoUpdater.on('checking-for-update', () => {
+    sendMessageToWindow('checking-for-update')
+  })
+
+  autoUpdater.on('update-available', (ev, info) => {
+    autoUpdater.downloadUpdate()
+    sendMessageToWindow(('update-available', info))
+  })
+
+  autoUpdater.on('update-not-available', (ev, info) => {
+    sendMessageToWindow('update-not-available', info)
+  })
+
+  autoUpdater.on('error', (ev, err) => {
+    sendMessageToWindow('update-error', err)
+  })
+
+  autoUpdater.on('download-progress', (ev, progressObj) => {
+    sendMessageToWindow('download-progress', progressObj)
+  })
+
+  autoUpdater.on('update-downloaded', (ev, info) => {
+    sendMessageToWindow('update-downloaded', info)
   })
 }
 

@@ -2,7 +2,7 @@
   "name": "mui-app-boilerplate",
   "author": "Marc-Olivier Laux <marc-olivier@matlaux.net> (https://github.com/molaux)",
   "description": "MUI App boilerplate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "/",
   "homepage-electron": "./",
   "private": true,
@@ -27,7 +27,13 @@
     "win": {
       "icon": "build/icons/icon.png",
       "target": "nsis"
-    }
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "https://my-domain/auto-updates"
+      }
+    ]
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",
@@ -52,6 +58,7 @@
     "dotenv": "^10.0.0",
     "electron-is-dev": "^2.0.0",
     "electron-reload": "^2.0.0-alpha.1",
+    "electron-updater": "^4.6.5",
     "fast-deep-equal": "^3.1.3",
     "graphql": "^16.2.0",
     "graphql-anywhere": "^4.2.7",
@@ -87,20 +94,21 @@
   },
   "scripts": {
     "start:desktop:dev": "cross-env NODE_ENV=dev nodemon --exec \"\"electron .\"\"",
-    "prebuild:desktop": "sed -i -e s/\\\"homepage\\\"/\\\"homepage-react\\\"/ -e s/\\\"homepage-electron\\\"/\\\"homepage\\\"/ package.json ; yarn build:web:production ; sed -i -e s/\\\"homepage\\\"/\\\"homepage-electron\\\"/ -e s/\\\"homepage-react\\\"/\\\"homepage\\\"/ package.json",
-    "build:desktop": "yarn electron-builder build -c.extraMetadata.main=build/electron.js -c.extraMetadata.homepage-react=./ --publish never --linux --win",
+    "prebuild:desktop": "sed -i -e s/\\\"homepage\\\"/\\\"homepage-react\\\"/ -e s/\\\"homepage-electron\\\"/\\\"homepage\\\"/ package.json ; yarn build:web:production ; sed -i -e s/\\\"homepage\\\"/\\\"homepage-electron\\\"/ -e s/\\\"homepage-react\\\"/\\\"homepage\\\"/ package.json ; rm -f dist/*.{AppImage,exe,exe.blockmap}",
+    "build:desktop": "yarn electron-builder build -c.extraMetadata.main=build/electron.js -c.extraMetadata.homepage-react=./ --publish always --linux --win",
     "build:desktop:debug": "DEBUG=electron-builder yarn electron-builder build -c.extraMetadata.main=build/electron.js -c.extraMetadata.homepage-react=./ --publish never",
+    "publish:desktop": "mkdir -p prod-dist ; cp dist/{*.AppImage,*.exe,latest-linux.yml,latest.yml,*.blockmap} prod-dist/",
     "start:web:dev:secured": "HTTPS=true react-app-rewired start",
     "start:web:dev": "react-app-rewired start",
     "build": "sh -ac '. ./.env.${REACT_APP_ENV}; react-scripts build'",
     "build:web:production": "REACT_APP_ENV=production yarn build",
     "build:web:test": "REACT_APP_ENV=test yarn build",
     "test": "react-app-rewired test --env=jsdom",
-    "prebuild:all:production": "npm --no-git-tag-version version patch",
-    "build:all:production": "yarn build:web:production && yarn build:desktop",
+    "prebuild-and-publish:all:production": "npm version patch",
+    "build-and-publish:all:production": "yarn build:web:production && yarn publish:web:production && yarn build:desktop && yarn publish:desktop",
     "prepublish:web:production": "rm -f build/{bundle-stats.json,bundle-stats.html}",
     "prepublish:web:test": "rm -f build/{bundle-stats.json,bundle-stats.html}",
-    "publish:web:production": "rm -rf prod-build.last/{*,.htaccess} && mv prod-build/{*,.htaccess} prod-build.last/  && cp -r --preserve build/{*,.htaccess} prod-build/",
+    "publish:web:production": "rm -rf prod-build.last/{*,.htaccess} && mv prod-build/{*,.htaccess} prod-build.last/  && cp -r --preserve build/{*,.htaccess} prod-build/ && ln -s prod-dist prod-build/auto-updates",
     "publish:web:test": "rm -rf test-build.last/{*,.htaccess} && mv test-build/{*,.htaccess} test-build.last/  && cp -r --preserve build/{*,.htaccess} test-build/",
     "eject": "react-scripts eject",
     "build:doc": "find -type f -name \"*.js\" | egrep -v \"./(prod-)?build\" | xargs dirname | uniq | xargs -n 1 ./build-doc.sh",

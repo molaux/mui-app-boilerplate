@@ -6,9 +6,9 @@ const { contextBridge, ipcRenderer } = electron
 process.once('loaded', (...args) => {
   contextBridge.exposeInMainWorld('electron', {
     sendMessage: (message) => ipcRenderer.send('message', message),
-    onResponse: (listener) => ipcRenderer.on(
-      'response',
-      (event, resp) => listener(resp)
+    onMessage: (event, listener) => ipcRenderer.on(
+      'message',
+      (e, o) => (event === o.action ? listener(o) : null)
     )
   })
 })

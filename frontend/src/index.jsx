@@ -38,7 +38,7 @@ let basePath = process.env.PUBLIC_URL
 basePath = basePath.length > 0 && basePath[basePath.count - 1] === '/' ? basePath.substring(0, -1) : basePath
 const uuid = generateUUID()
 
-const ThemizedApp = ({ onNewToken, token, error, onDisconnect }) => {
+const ThemizedApp = ({ onNewToken, token, error, onDisconnect, updaterStatus }) => {
   const {
     configuration
   } = useContext(ConfigurationContext)
@@ -65,8 +65,8 @@ const ThemizedApp = ({ onNewToken, token, error, onDisconnect }) => {
             <Router {...!isElectronProd ? { basename: basePath } : {}}>
               <CRUDFProvider>
                 <Routes>
-                  <Route path="*" element={<App module="home" onDisconnect={onDisconnect} />} />
-                  <Route exact path="/:module" element={<App onDisconnect={onDisconnect} />} />
+                  <Route path="*" element={<App module="home" onDisconnect={onDisconnect} updaterStatus={updaterStatus} />} />
+                  <Route exact path="/:module" element={<App onDisconnect={onDisconnect} updaterStatus={updaterStatus} />} />
                 </Routes>
               </CRUDFProvider>
             </Router>
@@ -81,21 +81,51 @@ ThemizedApp.propTypes = {
   token: PropTypes.string,
   onNewToken: PropTypes.func.isRequired,
   error: PropTypes.shape({}),
-  onDisconnect: PropTypes.func.isRequired
+  onDisconnect: PropTypes.func.isRequired,
+  updaterStatus: PropTypes.string
 }
 
 ThemizedApp.defaultProps = {
   token: null,
-  error: undefined
+  error: undefined,
+  updaterStatus: null
 }
 
 const AuthenticatedApp = () => {
   const [token, setToken] = useState(window.localStorage.getItem('auth-token'))
   const [error, setError] = useState(null)
+  const [updaterStatus, setUpdaterStatus] = useState(null)
 
   useEffect(() => {
     document.title = pkg.build.productName
   }, [])
+
+  useEffect(() => {
+    window.electron?.onMessage('checking-for-update', () => {
+      setUpdaterStatus('Vérification des mises à jour...')
+    })
+
+    window.electron?.onMessage('update-available', ({ payload }) => {
+      setUpdaterStatus('Une mise à jour est disponible.')
+    })
+
+    window.electron?.onMessage('update-not-available', ({ payload }) => {
+      setUpdaterStatus('Votre version est à jour.')
+    })
+
+    window.electron?.onMessage('update-error', ({ payload }) => {
+      setUpdaterStatus('Une erreur est servenue lors de la mise à jour...')
+    })
+
+    window.electron?.onMessage('download-progress', ({ payload }) => {
+      setUpdaterStatus('Téléchargement en cours...')
+    })
+
+    window.electron?.onMessage('update-downloaded', ({ payload }) => {
+      setUpdaterStatus('Mise à jour terminée, un redémarrage de l\'application est requis')
+      window.electron?.sendMessage({ action: 'quit-and-update' })
+    })
+  }, [setUpdaterStatus])
 
   const onDisconnect = () => {
     window.localStorage.removeItem('auth-token')
@@ -121,7 +151,7 @@ const AuthenticatedApp = () => {
   return (
     <ApolloProvider client={apolloClient}>
       { !token
-        ? <StyledLogin onNewToken={onNewToken} />
+        ? <StyledLogin onNewToken={onNewToken} updaterStatus={updaterStatus} />
         : (
           <ConfigurationProvider>
             <ThemizedApp
@@ -129,6 +159,7 @@ const AuthenticatedApp = () => {
               onNewToken={onNewToken}
               onDisconnect={onDisconnect}
               error={error}
+              updaterStatus={updaterStatus}
             />
           </ConfigurationProvider>
           )}

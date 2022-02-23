@@ -36,7 +36,7 @@ import './App.css'
 const Configuration = lazy(() => import('./components/configuration/Configuration'))
 const Bookmarks = lazy(() => import('./components/bookmarks/Bookmarks'))
 
-const AppContent = ({ classes, match, module, onLoaded }) => (
+const AppContent = ({ classes, match, module, onLoaded, updaterStatus }) => (
   module === 'bookmarks' || match.params.module === 'bookmarks'
     ? <Bookmarks className={classes.content} />
     : module === 'configuration' || match.params.module === 'configuration'
@@ -45,6 +45,7 @@ const AppContent = ({ classes, match, module, onLoaded }) => (
         <Greetings
           className={classes.content}
           onLoaded={onLoaded}
+          updaterStatus={updaterStatus}
         />
         )
 )
@@ -52,6 +53,7 @@ const AppContent = ({ classes, match, module, onLoaded }) => (
 AppContent.propTypes = {
   module: requiredPropsCheck(['module', 'match']),
   match: requiredPropsCheck(['module', 'match']),
+  updaterStatus: PropTypes.string,
   onLoaded: PropTypes.func,
   classes: PropTypes.shape({
     content: PropTypes.string
@@ -61,6 +63,7 @@ AppContent.propTypes = {
 AppContent.defaultProps = {
   module: undefined,
   match: undefined,
+  updaterStatus: null,
   onLoaded: () => {},
   classes: {
     root: null
@@ -70,7 +73,7 @@ AppContent.defaultProps = {
 /**
  * Main application entry point
  */
-const App = ({ classes, module, onDisconnect, match }) => {
+const App = ({ classes, module, onDisconnect, match, updaterStatus }) => {
   const [initialLoad, setInitialLoad] = useState(true)
   const { profile } = useContext(ProfileContext)
 
@@ -113,6 +116,7 @@ const App = ({ classes, module, onDisconnect, match }) => {
                   onDisconnect={onDisconnect}
                   match={match}
                   onLoaded={onLoaded}
+                  updaterStatus={updaterStatus}
                 />
               </Suspense>
             </div>
@@ -131,6 +135,7 @@ App.propTypes = {
   module: requiredPropsCheck(['module', 'match']),
   match: requiredPropsCheck(['module', 'match']),
   onDisconnect: PropTypes.func,
+  updaterStatus: PropTypes.string,
   classes: PropTypes.shape({
     root: PropTypes.string
   })
@@ -139,6 +144,7 @@ App.propTypes = {
 App.defaultProps = {
   module: undefined,
   match: undefined,
+  updaterStatus: null,
   onDisconnect: () => {},
   classes: {
     root: null

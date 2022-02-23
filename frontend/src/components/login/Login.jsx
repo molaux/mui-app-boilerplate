@@ -4,7 +4,8 @@ import {
   Box,
   Grid,
   TextField,
-  Button
+  Button,
+  Typography
 } from '@mui/material'
 
 import { ThemeProvider } from '@mui/material/styles'
@@ -36,7 +37,7 @@ const LOGIN = gql`
   }
 `
 
-export const Login = ({ onNewToken }) => {
+export const Login = ({ onNewToken, updaterStatus }) => {
   const [uid, setUid] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -129,6 +130,9 @@ export const Login = ({ onNewToken }) => {
           >
             Authenticate
           </Button>
+          {updaterStatus
+            ? <Typography style={{ color: 'white', maxWidth: '17em', fontSize: '0.9em' }} component="span">{updaterStatus}</Typography>
+            : null}
         </Grid>
       </Grid>
     </Grid>
@@ -136,11 +140,13 @@ export const Login = ({ onNewToken }) => {
 }
 
 Login.propTypes = {
-  onNewToken: PropTypes.func
+  onNewToken: PropTypes.func,
+  updaterStatus: PropTypes.string
 }
 
 Login.defaultProps = {
-  onNewToken: () => null
+  onNewToken: () => null,
+  updaterStatus: null
 }
 
 export const StyledLogin = (props) => (
