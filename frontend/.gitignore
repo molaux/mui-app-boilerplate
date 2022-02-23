@@ -13,6 +13,7 @@
 /build
 /dist
 /prod-build
+/prod-dist
 /test-build
 /prod-build.last
 /test-build.last
