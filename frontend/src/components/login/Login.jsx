@@ -131,7 +131,7 @@ export const Login = ({ onNewToken, updaterStatus }) => {
             Authenticate
           </Button>
           {updaterStatus
-            ? <Typography style={{ color: 'white', maxWidth: '17em', fontSize: '0.9em' }} component="span">{updaterStatus}</Typography>
+            ? <Typography style={{ color: 'white', maxWidth: '17em', fontSize: '0.9em' }} component="span">{updaterStatus.message}</Typography>
             : null}
         </Grid>
       </Grid>

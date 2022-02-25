@@ -79,7 +79,7 @@ const Greetings = ({ className, onLoaded, updaterStatus }) => {
       </Typography>
       <br />
       {updaterStatus
-        ? <StatusTypography gutterBottom info>{updaterStatus}</StatusTypography>
+        ? <StatusTypography gutterBottom info={updaterStatus.status !== 'update-error'} error={updaterStatus.status === 'update-error'} timeout={updaterStatus.status === 'update-not-available' ? 5000 : null}>{updaterStatus.message}</StatusTypography>
         : null}
       <StatusTypography>
         <Typography component="div" variant="caption">Client : {packageInfos.version} / {process.env.NODE_ENV}{!isElectron() && downloadUrl ? <> - <Link href={downloadUrl}>Installer l&apos;application desktop pour {getOS()}</Link></> : null}</Typography>

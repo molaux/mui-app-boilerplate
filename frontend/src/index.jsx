@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import { Button } from '@mui/material'
 import isElectron from 'is-electron'
 
 // V5 temporary migration fix
@@ -102,28 +103,34 @@ const AuthenticatedApp = () => {
 
   useEffect(() => {
     window.electron?.onMessage('checking-for-update', () => {
-      setUpdaterStatus('Vérification des mises à jour...')
+      setUpdaterStatus({ status: 'checking-for-update', message: 'Checking for updates...' })
     })
 
     window.electron?.onMessage('update-available', ({ payload }) => {
-      setUpdaterStatus('Une mise à jour est disponible.')
+      setUpdaterStatus({ status: 'update-available', message: 'An update is available.' })
     })
 
     window.electron?.onMessage('update-not-available', ({ payload }) => {
-      setUpdaterStatus('Votre version est à jour.')
+      setUpdaterStatus({ status: 'update-not-available', message: 'Application is up to date.' })
     })
 
     window.electron?.onMessage('update-error', ({ payload }) => {
-      setUpdaterStatus('Une erreur est servenue lors de la mise à jour...')
+      setUpdaterStatus({ status: 'update-error', message: 'Sorry, an error occured during update...' })
     })
 
     window.electron?.onMessage('download-progress', ({ payload }) => {
-      setUpdaterStatus('Téléchargement en cours...')
+      setUpdaterStatus({ status: 'download-progress', message: 'Downloading update...' })
     })
 
     window.electron?.onMessage('update-downloaded', ({ payload }) => {
-      setUpdaterStatus('Mise à jour terminée, un redémarrage de l\'application est requis')
-      window.electron?.sendMessage({ action: 'quit-and-update' })
+      setUpdaterStatus({
+        status: 'update-downloaded',
+        message: (
+          <>
+            Update downloaded, You need to restart application to apply it : <Button onClick={() => window.electron?.sendMessage({ action: 'quit-and-update' })}>Restart and install</Button>
+          </>
+        )
+      })
     })
   }, [setUpdaterStatus])
 
